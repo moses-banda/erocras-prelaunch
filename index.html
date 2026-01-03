@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iphone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container" data-tilt>
+        <div class="iphone">
+            <div class="notch">
+                <div class="speaker"></div>
+                <div class="camera"></div>
+            </div>
+
+            <!-- Screen 1: Incoming Call -->
+            <div id="incoming-call" class="screen incoming-call active">
+                <div class="call-info">
+                    <p class="call-status">INCOMING CALL</p>
+                    <div class="avatar-container">
+                        <img src="snaps/caller.jpg" alt="Caller Avatar" class="avatar pulse">
+                    </div>
+                    <h1 class="caller-name">911 for Careers</h1>
+                    <p class="caller-sub">On-demand career advice when stuck</p>
+                </div>
+
+                <div class="call-actions">
+                    <div class="action-btn decline" onclick="handleDecline()">
+                        <div class="icon-circle red">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiA5Yy0xLjYgMC0zLjEuMjgtNC41MS44NmwzLjAzIDMuMDMgMS40OC0xLjQ4Yy44NC4zOCAxLjc3LjU5IDIuNzUuNTlzMy4yNS0uOTMgNC4yMy0yLjU1bDEuNDggMS40OHMyLjg0LTIuODQgMi44NC0yLjg0Yy0yLjAxLTIuMDItNC44NC0zLjU1LTguMTEtNC4wNXYuMDJ6bS04LjQ5LjYxYy0uODUuODYtMi44NCAyLjg0LTIuODQgMi44NHMyLjg0IDIuODQgNC4zNSAxLjMzbDEuNDgtMS40OGMtMS4xLTEuMDEtMi4yLTItMi45OS0yLjY5eiIvPjwvc3ZnPg=="
+                                alt="Decline">
+                        </div>
+                        <span>Decline</span>
+                    </div>
+                    <div class="action-btn accept" onclick="handleAccept()">
+                        <div class="icon-circle green">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0yMC4wMSAxNS4zOGMtMS4yMyAwLTIuNDItLjItMy41My0uNTYtLjM1LS4xMi0uNzQtLjAzLTEuMDEuMjRsLTEuNTMgMS41M2MtMi43MS0xLjQzLTQuOTItMy42My02LjM2LTYuMzZsMS41My0xLjUzYy4yNi0uMjYuMzYtLjY1LjI0LTEuMDItLjM2LTEuMTEtLjU2LTIuMy0uNTYtMy41MyAwLS41NC0uNDUtLjk5LS45OS0uOTlINC4xOWMtLjU0IDAtLjk5LjQ1LS45OS45OUMzLjIgMTMuNzEgOC40NiAxOSAxOC4wMSAxOWMuNTQgMCAuOTktLjQ1Ljk5LS45OXYtMy42M2MtLjAxLS41NS0uNDYtMS0xLS45OXoiLz48L3N2Zz4="
+                                alt="Accept">
+                        </div>
+                        <span>Accept</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: Waitlist (WhatsApp Style) -->
+            <div id="waitlist-chat" class="screen waitlist-chat">
+                <div class="chat-header">
+                    <div class="back-btn" onclick="goBackToCall()">‹</div>
+                    <div class="chat-info">
+                        <img src="snaps/caller.jpg" alt="Avatar" class="header-avatar">
+                        <div class="header-text">
+                            <h2>Waitlist</h2>
+                            <p>162 members</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-body">
+                    <div class="date-bubble">Today 9:41 AM</div>
+
+                    <div class="message received">
+                        <img src="snaps/caller.jpg" class="msg-avatar">
+                        <div class="bubble">
+                            Type your email to join the waitlist
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <div class="camera-icon">📷</div>
+                    <input type="email" placeholder="Type your email..." id="emailInput">
+                    <div class="send-btn" onclick="submitEmail()">➤</div>
+                </div>
+            </div>
+
+            <!-- Screen 3: Decline/Message Options -->
+            <div id="decline-options" class="screen decline-options">
+                <div class="response-container">
+                    <h2>Leave a message?</h2>
+                    <p>The user is currently busy.</p>
+                    <button class="msg-option" onclick="goBackToCall()">Return directly to call</button>
+                </div>
+            </div>
+
+            <div class="butt1"></div>
+        </div>
+
+        <script>
+            function handleAccept() {
+                document.getElementById('incoming-call').classList.remove('active');
+                document.getElementById('waitlist-chat').classList.add('active');
+            }
+
+            function handleDecline() {
+                document.getElementById('incoming-call').classList.remove('active');
+                document.getElementById('decline-options').classList.add('active');
+            }
+
+            function goBackToCall() {
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                document.getElementById('incoming-call').classList.add('active');
+            }
+
+            function submitEmail() {
+                const email = document.getElementById('emailInput').value;
+                if (email) {
+                    // Here we would send to database
+                    const chatBody = document.querySelector('.chat-body');
+                    chatBody.innerHTML += `
+                    <div class="message sent">
+                        <div class="bubble">${email}</div>
+                    </div>
+                `;
+                    document.getElementById('emailInput').value = '';
+                    setTimeout(() => {
+                        chatBody.innerHTML += `
+                    <div class="message received">
+                         <img src="snaps/caller.jpg" class="msg-avatar">
+                        <div class="bubble">Thanks! You've been added.</div>
+                    </div>
+                `;
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }, 1000);
+                }
+            }
+        </script>
+    </div>
+
+
+</body>
+
+</html>
