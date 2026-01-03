@@ -10,6 +10,43 @@
 </head>
 
 <body>
+    <!-- Ambient Background Layer -->
+    <div class="ambient-background">
+        <!-- Belt 1 (Top) - Left to Right -->
+        <div class="belt-row belt-top">
+            <div class="belt-track track-left">
+                <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/bg3.png"></div>
+            </div>
+        </div>
+        <!-- Belt 2 (Middle) - Right to Left -->
+        <div class="belt-row belt-middle">
+            <div class="belt-track track-right">
+                <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/bg1.png"></div>
+            </div>
+        </div>
+        <!-- Belt 3 (Bottom) - Left to Right -->
+        <div class="belt-row belt-bottom">
+            <div class="belt-track track-left">
+                <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/bg2.png"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="container" data-tilt>
         <div class="iphone">
             <div class="notch">
@@ -59,7 +96,7 @@
                     </div>
                 </div>
 
-                <div class="chat-body">
+                <div class="chat-body" id="chatBody">
                     <div class="date-bubble">Today 9:41 AM</div>
 
                     <div class="message received">
@@ -77,7 +114,7 @@
                 </div>
             </div>
 
-            <!-- Screen 3: Decline/Message Options -->
+            <!-- Screen 3: Decline Options (Hidden/Unused now, simplified to No flow) -->
             <div id="decline-options" class="screen decline-options">
                 <div class="response-container">
                     <h2>Leave a message?</h2>
@@ -88,49 +125,92 @@
 
             <div class="butt1"></div>
         </div>
+    </div>
 
-        <script>
-            function handleAccept() {
-                document.getElementById('incoming-call').classList.remove('active');
-                document.getElementById('waitlist-chat').classList.add('active');
-            }
+    <script>
+        function handleAccept() {
+            document.getElementById('incoming-call').classList.remove('active');
+            document.getElementById('waitlist-chat').classList.add('active');
+        }
 
-            function handleDecline() {
-                document.getElementById('incoming-call').classList.remove('active');
-                document.getElementById('decline-options').classList.add('active');
-            }
+        function handleDecline() {
+            // Trigger "No" flow
+            document.getElementById('incoming-call').classList.remove('active');
+            const chatScreen = document.getElementById('waitlist-chat');
+            const chatBody = document.getElementById('chatBody');
 
-            function goBackToCall() {
-                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-                document.getElementById('incoming-call').classList.add('active');
-            }
+            chatScreen.classList.add('active');
 
-            function submitEmail() {
-                const email = document.getElementById('emailInput').value;
-                if (email) {
-                    // Here we would send to database
-                    const chatBody = document.querySelector('.chat-body');
+            // 1. Insert "No" message (Simulated user response)
+            setTimeout(() => {
+                chatBody.innerHTML += `
+                    <div class="message sent fade-in">
+                        <div class="bubble">No, thanks.</div>
+                    </div>
+                `;
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                // 2. Wait 600ms
+                setTimeout(() => {
+                    startQuoteSequence(chatBody);
+                }, 600);
+            }, 300);
+        }
+
+        const quotes = [
+            "That's okay — paths look different for everyone.",
+            "Some people join early. Some later. Both are fine.",
+            "You're still welcome here."
+        ];
+
+        function startQuoteSequence(chatBody) {
+            let delay = 0;
+            // Optionally dim background
+            document.querySelector('.ambient-background').classList.add('dimmed');
+
+            quotes.forEach((quote, index) => {
+                setTimeout(() => {
                     chatBody.innerHTML += `
+                        <div class="message received quote-msg fade-slide-in">
+                             <img src="snaps/caller.jpg" class="msg-avatar">
+                            <div class="bubble">${quote}</div>
+                        </div>
+                    `;
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, delay);
+                delay += 1500; // 1.5s delay between quotes
+            });
+        }
+
+        function goBackToCall() {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('incoming-call').classList.add('active');
+            document.querySelector('.ambient-background').classList.remove('dimmed');
+            // In a real app we might reset the chat content here
+        }
+
+        function submitEmail() {
+            const email = document.getElementById('emailInput').value;
+            if (email) {
+                const chatBody = document.getElementById('chatBody');
+                chatBody.innerHTML += `
                     <div class="message sent">
                         <div class="bubble">${email}</div>
                     </div>
                 `;
-                    document.getElementById('emailInput').value = '';
-                    setTimeout(() => {
-                        chatBody.innerHTML += `
+                document.getElementById('emailInput').value = '';
+                setTimeout(() => {
+                    chatBody.innerHTML += `
                     <div class="message received">
                          <img src="snaps/caller.jpg" class="msg-avatar">
                         <div class="bubble">Thanks! You've been added.</div>
                     </div>
                 `;
-                        chatBody.scrollTop = chatBody.scrollHeight;
-                    }, 1000);
-                }
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1000);
             }
-        </script>
-    </div>
-
-
+        }
+    </script>
 </body>
 
 </html>

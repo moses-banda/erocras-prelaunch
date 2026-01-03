@@ -1,3 +1,4 @@
+/* Existing Styles + New Background Styles */
 :root {
     --phone-width: 380px;
     --phone-aspect-ratio: 9 / 19.5;
@@ -20,7 +21,8 @@
 }
 
 body {
-    background: #f0f0f0;
+    background: #000;
+    /* Darker bg for cinematic feel */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +33,116 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+/* Background Layer */
+.ambient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    /* Behind phone */
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    /* Allow hover */
+    background: #000;
+}
+
+.belt-row {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle separation */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.belt-track {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: max-content;
+    will-change: transform;
+}
+
+.belt-item {
+    height: 100%;
+    width: 30vw;
+    /* Wide format images */
+    min-width: 400px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.belt-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    filter: blur(3px) grayscale(40%);
+    transition: all 0.35s ease-out;
+    cursor: pointer;
+}
+
+/* Hover State */
+.belt-item img:hover {
+    opacity: 1;
+    filter: blur(0) grayscale(0%);
+    z-index: 10;
+}
+
+/* Animation */
+.track-left {
+    animation: moveLeft 40s linear infinite;
+}
+
+.track-right {
+    animation: moveRight 40s linear infinite;
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Belt Specifics */
+.belt-top .belt-track {
+    animation-duration: 35s;
+}
+
+.belt-middle .belt-track {
+    animation-duration: 45s;
+}
+
+.belt-bottom .belt-track {
+    animation-duration: 38s;
+}
+
+/* Container & Phone */
 .container {
+    position: relative;
+    z-index: 10;
+    /* Above background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +150,8 @@ body {
     height: 100vh;
     box-sizing: border-box;
     perspective: 900px;
+    pointer-events: none;
+    /* Let clicks pass to background */
 }
 
 .iphone {
@@ -49,12 +162,16 @@ body {
     border: var(--phone-border-width) solid var(--phone-bg-color);
     border-radius: var(--phone-border-radius);
     position: relative;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3),
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
         0 0 0 2px rgba(255, 255, 255, 0.1) inset;
     transform-style: preserve-3d;
     transition: transform 0.1s ease;
     overflow: hidden;
+    pointer-events: auto;
+    /* Re-enable clicks on phone */
 }
+
+/* ... (Rest of existing phone styles) ... */
 
 /* Notch & Hardware */
 .notch {
@@ -136,7 +253,7 @@ body {
     z-index: 10;
 }
 
-/* Screen 1: Incoming Call */
+/* Incoming Call */
 .incoming-call {
     background: radial-gradient(circle at center, #1a2a33 0%, #000000 100%);
     justify-content: space-between;
@@ -253,11 +370,10 @@ body {
     color: white;
 }
 
-/* Screen 2: Waitlist Chat */
+/* Waitlist Chat */
 .waitlist-chat {
     background: var(--wa-dark-bg);
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
-    /* Subtle WhatsApp dark pattern if available, else solid */
     background-blend-mode: overlay;
 }
 
@@ -366,10 +482,34 @@ body {
     border-bottom-right-radius: 4px;
 }
 
+/* Quote flow animation */
+.fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+}
+
+.fade-slide-in {
+    animation: fadeSlideIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateX(-12px);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .chat-input-area {
     background: var(--wa-header-bg);
     padding: 10px 15px 25px;
-    /* Extra bottom padding for home indicator */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -400,29 +540,10 @@ body {
     padding: 5px;
 }
 
-/* Screen 3: Decline Options */
-.decline-options {
-    background: #000;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    text-align: center;
-}
-
-.response-container h2 {
-    margin-top: 0;
-}
-
-.msg-option {
-    margin-top: 30px;
-    padding: 15px 30px;
-    background: #333;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
+/* Decline / "No" Flow - Dimming */
+.dimmed {
+    opacity: 0.9 !important;
+    transition: opacity 1s ease;
 }
 
 /* Responsiveness adjustments */
