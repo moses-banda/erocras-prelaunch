@@ -12,43 +12,73 @@
 <body>
     <!-- Ambient Background Layer -->
     <div class="ambient-background">
+
         <!-- Belt 1 (Top) - Left to Right -->
         <div class="belt-row belt-top">
             <div class="belt-track track-left">
                 <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_ej1olrej1olrej1o (1).png"></div>
                 <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_hokqn2hokqn2hokq (4).png"></div>
                 <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_js31y9js31y9js31.png"></div>
+
+                <!-- repeat for seamless loop -->
                 <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_ej1olrej1olrej1o (1).png"></div>
                 <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_hokqn2hokqn2hokq (4).png"></div>
                 <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_js31y9js31y9js31.png"></div>
             </div>
         </div>
+
         <!-- Belt 2 (Middle) - Right to Left -->
         <div class="belt-row belt-middle">
             <div class="belt-track track-right">
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_io2noio2noio2noi (1).png"></div>
                 <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_io2noio2noio2noi (2).png"></div>
                 <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_io2noio2noio2noi (3).png"></div>
                 <div class="belt-item"><img src="snaps/bg1.png"></div>
+
+                <!-- repeat -->
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_io2noio2noio2noi (1).png"></div>
                 <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_io2noio2noio2noi (2).png"></div>
                 <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_io2noio2noio2noi (3).png"></div>
                 <div class="belt-item"><img src="snaps/bg1.png"></div>
             </div>
         </div>
+
         <!-- Belt 3 (Bottom) - Left to Right -->
         <div class="belt-row belt-bottom">
             <div class="belt-track track-left">
-                <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_nr3psfnr3psfnr3p.png"></div>
                 <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_y70w37y70w37y70w.png"></div>
                 <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_ej1olrej1olrej1o (1).png"></div>
                 <div class="belt-item"><img src="snaps/bg3.png"></div>
+
+                <!-- repeat -->
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_nr3psfnr3psfnr3p.png"></div>
                 <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_y70w37y70w37y70w.png"></div>
                 <div class="belt-item"><img src="snaps/bg2.png"></div>
+                <div class="belt-item"><img src="snaps/Gemini_Generated_Image_ej1olrej1olrej1o (1).png"></div>
+                <div class="belt-item"><img src="snaps/bg3.png"></div>
             </div>
         </div>
+
     </div>
+
 
     <div class="container" data-tilt>
         <div class="iphone">
+            <div class="btns"></div>
             <div class="notch">
                 <div class="speaker"></div>
                 <div class="camera"></div>
@@ -70,7 +100,7 @@
                         <div class="icon-circle red">
                             <span style="font-size: 24px; font-weight: bold;">?</span>
                         </div>
-                        <span style="width:100px; text-align:center; line-height: 1.2;">See What Happens</span>
+                        <span style="width:100px; text-align:center; line-height: 1.2;">Erocras</span>
                     </div>
                     <div class="action-btn accept" onclick="handleAccept()">
                         <div class="icon-circle green">
@@ -107,7 +137,7 @@
                 </div>
 
                 <div class="chat-input-area">
-                    <div class="camera-icon">📷</div>
+                    <div class="camera-icon"></div>
                     <!-- wrapper for input to position suggestions relative to it if needed, or just absolute -->
                     <div style="flex: 1; position: relative;">
                         <input type="email" placeholder="Type your email..." id="emailInput" autocomplete="off">
@@ -131,12 +161,17 @@
     </div>
 
     <script>
+        // Initialize state
+        document.querySelector('.iphone').classList.add('ringing');
+
         function handleAccept() {
+            document.querySelector('.iphone').classList.remove('ringing');
             document.getElementById('incoming-call').classList.remove('active');
             document.getElementById('waitlist-chat').classList.add('active');
         }
 
         function handleDecline() {
+            document.querySelector('.iphone').classList.remove('ringing');
             // Trigger "See What Happens" / "No" flow
             document.getElementById('incoming-call').classList.remove('active');
             const chatScreen = document.getElementById('waitlist-chat');
@@ -160,29 +195,117 @@
             }, 300);
         }
 
-        const quotes = [
-            "We get it. It's confusing out there.",
-            "Most students don't realize the problem until it's too late.",
-            "But you don't have to figure it out alone."
+        const stories = [
+            { text: "This is Charlie before his important coffee chat...", img: "snaps/problem_charlie.png" },
+            { text: "Sarah during her midterms, overwhelmed and alone...", img: "snaps/problem_sarah.png" },
+            { text: "And Alex, facing another rejection without guidance...", img: "snaps/problem_alex.png" }
         ];
 
-        function startQuoteSequence(chatBody) {
-            let delay = 0;
-            // Optionally dim background
-            document.querySelector('.ambient-background').classList.add('dimmed');
+        let storyIndex = 0;
+        let homeTimeout = null;
 
-            quotes.forEach((quote, index) => {
+        function startQuoteSequence(chatBody) {
+            document.querySelector('.ambient-background').classList.add('dimmed');
+            showNextStory();
+        }
+
+        function showNextStory() {
+            const chatBody = document.getElementById('chatBody');
+            if (storyIndex >= stories.length) return;
+
+            const story = stories[storyIndex];
+
+            // 1. Show Text
+            setTimeout(() => {
+                const textMsg = document.createElement('div');
+                textMsg.className = 'message received fade-slide-in';
+                textMsg.innerHTML = `
+                    <img src="snaps/caller.jpg" class="msg-avatar">
+                    <div class="bubble">${story.text}</div>
+                `;
+                chatBody.appendChild(textMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                // 2. Show Image after delay
                 setTimeout(() => {
-                    chatBody.innerHTML += `
-                        <div class="message received quote-msg fade-slide-in">
-                             <img src="snaps/caller.jpg" class="msg-avatar">
-                            <div class="bubble">${quote}</div>
+                    const imgMsg = document.createElement('div');
+                    imgMsg.className = 'message received fade-slide-in';
+                    imgMsg.innerHTML = `
+                        <img src="snaps/caller.jpg" class="msg-avatar">
+                        <div class="bubble" style="padding: 5px;">
+                            <img src="${story.img}" class="msg-image">
                         </div>
                     `;
+                    chatBody.appendChild(imgMsg);
                     chatBody.scrollTop = chatBody.scrollHeight;
-                }, delay);
-                delay += 2000; // Increased delay for reading
-            });
+
+                    storyIndex++;
+
+                    // Determine next step
+                    if (storyIndex === 1) {
+                        // Midway option after 1st story
+                        setTimeout(showMidwayOption, 1500);
+                    } else if (storyIndex === 2) {
+                        // Ask back to home after 2nd story
+                        setTimeout(askBackToHome, 1500);
+                    } else if (storyIndex < stories.length) {
+                        // Keep going
+                        setTimeout(showNextStory, 3000);
+                    }
+                }, 1500);
+            }, 1000);
+        }
+
+        function showMidwayOption() {
+            const chatBody = document.getElementById('chatBody');
+            const option = document.createElement('div');
+            option.className = 'story-option';
+            option.innerText = "See more stories";
+            option.onclick = () => {
+                option.remove();
+                showNextStory();
+            };
+            chatBody.appendChild(option);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function askBackToHome() {
+            const chatBody = document.getElementById('chatBody');
+            const question = document.createElement('div');
+            question.className = 'message received fade-slide-in';
+            question.innerHTML = `
+                <img src="snaps/caller.jpg" class="msg-avatar">
+                <div class="bubble">Do you want to go back to home?</div>
+            `;
+            chatBody.appendChild(question);
+
+            const options = document.createElement('div');
+            options.style.display = 'flex';
+            options.style.gap = '10px';
+            options.style.justifyContent = 'center';
+            options.innerHTML = `
+                <div class="story-option" id="yesHome">Yes</div>
+                <div class="story-option" id="noHome">No</div>
+            `;
+            chatBody.appendChild(options);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            document.getElementById('yesHome').onclick = () => {
+                clearTimeout(homeTimeout);
+                goBackToCall();
+            };
+
+            document.getElementById('noHome').onclick = () => {
+                clearTimeout(homeTimeout);
+                options.remove();
+                showNextStory();
+            };
+
+            // 7 Second Timeout
+            homeTimeout = setTimeout(() => {
+                options.remove();
+                showNextStory();
+            }, 7000);
         }
 
         function goBackToCall() {
@@ -193,15 +316,20 @@
         }
 
         function submitEmail() {
-            const email = document.getElementById('emailInput').value;
-            if (email) {
+            const emailInput = document.getElementById('emailInput');
+            const email = emailInput.value.trim();
+
+            // Regex: name@domain.com or name@domain.edu
+            const emailRegex = /^[^\s@]+@[^\s@]+\.(com|edu)$/i;
+
+            if (email && emailRegex.test(email)) {
                 const chatBody = document.getElementById('chatBody');
                 chatBody.innerHTML += `
                     <div class="message sent">
                         <div class="bubble">${email}</div>
                     </div>
                 `;
-                document.getElementById('emailInput').value = '';
+                emailInput.value = '';
                 document.getElementById('autocomplete-list').classList.remove('visible'); // Hide suggestions
 
                 setTimeout(() => {
@@ -213,6 +341,10 @@
                 `;
                     chatBody.scrollTop = chatBody.scrollHeight;
                 }, 1000);
+            } else if (email) {
+                // Shake input or show brief error if invalid
+                emailInput.style.border = '2px solid red';
+                setTimeout(() => emailInput.style.border = 'none', 1000);
             }
         }
 

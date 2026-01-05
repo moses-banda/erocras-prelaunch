@@ -88,10 +88,10 @@ body {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    opacity: 0.35;
+    opacity: 0.8;
     /* Increased default opacity */
     filter: blur(3px) grayscale(40%);
-    transition: all 0.35s ease-out;
+    transition: all 0.15s ease-in-out;
     cursor: pointer;
 }
 
@@ -132,18 +132,37 @@ body {
     }
 }
 
-/* Belt Specifics */
+/* Belt Specifics - Optimized for ambient feel */
+.belt-row {
+    flex: 1;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.belt-item {
+    width: 20vw;
+    /* Smaller belt items */
+    min-width: 250px;
+}
+
+.belt-item img {
+    opacity: 0.4;
+    /* Much dimmer by default */
+    filter: blur(8px) grayscale(80%);
+    /* More blur to stay in background */
+}
+
 .belt-top .belt-track {
-    animation-duration: 45s;
-    /* Slower rotation */
+    animation-duration: 80s;
+    /* Slower, more subtle */
 }
 
 .belt-middle .belt-track {
-    animation-duration: 55s;
+    animation-duration: 100s;
 }
 
 .belt-bottom .belt-track {
-    animation-duration: 48s;
+    animation-duration: 90s;
 }
 
 /* Container & Phone */
@@ -154,7 +173,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 1000vw;
     height: 100vh;
     box-sizing: border-box;
     perspective: 900px;
@@ -163,30 +182,149 @@ body {
 }
 
 .iphone {
-    height: 90vh;
+    /* Large, crisp display */
+    height: 100vh;
+    max-height: 1000px;
     width: auto;
-    aspect-ratio: var(--phone-aspect-ratio);
+    min-width: 450px;
+    /* Wider for desktop readability */
+    aspect-ratio: 9 / 19.5;
     background: #000;
-    border: var(--phone-border-width) solid var(--phone-bg-color);
-    border-radius: var(--phone-border-radius);
+
+    /* Highly Visible Bezel */
+    border: 12px solid #555;
+    /* Thicker, more substantial */
+    border-radius: 65px;
+
     position: relative;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5),
-        0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.9),
+        0 0 0 2px rgba(255, 255, 255, 0.2) inset,
+        0 0 40px rgba(37, 211, 102, 0.1);
+
     transform-style: preserve-3d;
-    transition: transform 0.1s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     pointer-events: auto;
-    /* Re-enable clicks on phone */
 }
 
-/* ... (Rest of existing phone styles) ... */
+/* Ringing State Glow */
+.iphone.ringing {
+    box-shadow:
+        0 0 50px rgba(37, 211, 102, 0.3),
+        0 30px 60px rgba(0, 0, 0, 0.7),
+        0 0 0 2px rgba(255, 255, 255, 0.2) inset;
+    border-color: #777;
+    animation: phone-pulse 2s infinite ease-in-out;
+}
+
+/* Side Buttons */
+.iphone::before,
+.iphone::after {
+    content: '';
+    position: absolute;
+    background: #444;
+    /* Lighter for visibility */
+    border-radius: 2px 0 0 2px;
+    left: -12px;
+    /* Adjusted for thicker bezel */
+    transition: all 0.3s;
+    z-index: -1;
+}
+
+/* Active Buttons "Charging Up" Effect when ringing */
+.iphone.ringing::before,
+.iphone.ringing::after,
+.iphone.ringing .btns {
+    animation: btn-charge 1s infinite alternate;
+}
+
+.iphone.ringing .butt1 {
+    background: #fff;
+    box-shadow: 0 0 15px #fff, 0 0 30px rgba(255, 255, 255, 0.5);
+    animation: home-glow 1s infinite alternate;
+}
+
+@keyframes home-glow {
+    from {
+        opacity: 0.7;
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1.1);
+        box-shadow: 0 0 20px #fff;
+    }
+}
+
+/* Volume Up */
+.iphone::before {
+    top: 100px;
+    height: 400px;
+    width: 4px;
+    box-shadow: 0 50px 0 #222;
+    /* Volume Down via shadow */
+}
+
+.iphone.ringing::before {
+    box-shadow: 0 50px 0 #4f4;
+    /* Vol Down green glow in shadow? No, shadow color animation is tricky with shorthand. Let's simplify. */
+    /* Re-declaring to animate shadow separately if needed, but simple bg animation is safer/cleaner. */
+    box-shadow: 0 50px 0 currentColor;
+    /* Use currentColor to propagate animation? */
+}
+
+/* Power Button */
+.iphone::after {
+    top: 125px;
+    height: 60px;
+    width: 4px;
+    right: -8px;
+    /* Right side */
+    left: auto;
+    border-radius: 0 2px 2px 0;
+}
+
+@keyframes btn-charge {
+    0% {
+        background: #222;
+        box-shadow: 0 0 0 rgba(0, 255, 0, 0);
+    }
+
+    100% {
+        background: #5f5;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+    }
+}
+
+@keyframes phone-pulse {
+    0% {
+        border-color: #444;
+    }
+
+    50% {
+        border-color: #777;
+    }
+
+    100% {
+        border-color: #444;
+    }
+}
+
+/* Silent Switch */
+.iphone .btns {
+    position: absolute;
+    top: 60px;
+    left: -14px;
+    width: 3px;
+    height: 20px;
+    background: #222;
+    border-radius: 2px 0 0 2px;
+}
 
 /* Notch & Hardware */
 .notch {
-    width: var(--notch-width);
-    height: var(--notch-height);
-    background: var(--phone-bg-color);
-    border-radius: 0 0 20px 20px;
     position: absolute;
     top: 0;
     left: 50%;
@@ -197,6 +335,10 @@ body {
     gap: 15px;
     padding: 0 15px;
     z-index: 100;
+    width: var(--notch-width);
+    height: var(--notch-height);
+    background: var(--phone-bg-color);
+    border-radius: 0 0 20px 20px;
 }
 
 .speaker {
@@ -282,10 +424,13 @@ body {
 }
 
 .call-status {
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: #8696a0;
-    margin-bottom: 20px;
+    font-size: 16px;
+    /* Increased */
+    letter-spacing: 3px;
+    color: #aeb9bf;
+    /* Brighter */
+    font-weight: 600;
+    margin-bottom: 30px;
 }
 
 .avatar-container {
@@ -321,15 +466,17 @@ body {
 }
 
 .caller-name {
-    font-size: 28px;
-    font-weight: 500;
+    font-size: 32px;
+    /* Increased */
+    font-weight: 700;
     margin: 0;
 }
 
 .caller-sub {
-    font-size: 16px;
+    font-size: 18px;
+    /* Increased */
     color: #8696a0;
-    margin: 5px 0 0;
+    margin: 8px 0 0;
 }
 
 .call-actions {
@@ -374,6 +521,32 @@ body {
 
 .icon-circle.green {
     background: var(--wa-green);
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+    animation: icon-pulse 2s infinite;
+}
+
+@keyframes icon-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px rgba(37, 211, 102, 0.6);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+    }
+}
+
+/* Style for the Erocras text in action-btn */
+.action-btn.decline span {
+    color: #ff3b30;
+    text-shadow: 0 0 10px rgba(255, 59, 48, 0.3);
+    font-weight: 600;
 }
 
 .action-btn span {
@@ -392,36 +565,50 @@ body {
     background: var(--wa-header-bg);
     padding: 45px 15px 10px;
     display: flex;
+    flex-direction: column;
+    /* Changed to center content */
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     color: var(--wa-text-primary);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     z-index: 20;
+    position: relative;
 }
 
 .back-btn {
+    position: absolute;
+    left: 15px;
+    top: 50px;
     font-size: 28px;
     color: #007aff;
     cursor: pointer;
-    padding-right: 5px;
+}
+
+.chat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .header-avatar {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .header-text h2 {
-    font-size: 16px;
-    margin: 0;
-    font-weight: 600;
+    font-size: 20px;
+    /* Larger */
+    margin: 5px 0 0;
+    font-weight: 700;
 }
 
 .header-text p {
-    font-size: 12px;
-    margin: 2px 0 0;
+    font-size: 14px;
+    /* Larger */
+    margin: 4px 0 0;
     color: var(--wa-text-secondary);
 }
 
@@ -437,11 +624,11 @@ body {
 .date-bubble {
     align-self: center;
     background: var(--wa-header-bg);
-    padding: 5px 12px;
-    border-radius: 8px;
-    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 14px;
     color: var(--wa-text-secondary);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -473,10 +660,11 @@ body {
 }
 
 .bubble {
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 15px;
-    line-height: 1.4;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 18px;
+    /* Significantly larger text for the phone screen */
+    line-height: 1.5;
     position: relative;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
@@ -527,19 +715,60 @@ body {
 }
 
 .camera-icon {
-    font-size: 22px;
-    color: var(--wa-text-secondary);
+    font-size: 32px;
+    /* Much larger cross */
+    color: #8696a0;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+/* Styled Cross Icon - Greyish */
+.camera-icon::before {
+    content: '+';
+    font-weight: 200;
+    transform: scale(1.5);
+}
+
+/* Story Image Style */
+.msg-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 8px;
+    display: block;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.story-option {
+    align-self: center;
+    background: #1f2c34;
+    color: #25d366;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #25d366;
     cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+    animation: fadeIn 0.5s;
+}
+
+.story-option:hover {
+    background: #25d366;
+    color: #fff;
 }
 
 #emailInput {
     flex: 1;
     background: var(--wa-dark-bg);
     border: none;
-    border-radius: 20px;
-    padding: 10px 15px;
+    border-radius: 25px;
+    padding: 14px 20px;
     color: white;
-    font-size: 15px;
+    font-size: 18px;
+    /* Larger text */
     outline: none;
 }
 
@@ -621,7 +850,7 @@ body {
     }
 
     .iphone {
-        max-width: 85vw;
-        max-height: 85vh;
+        max-width: 10vw;
+        max-height: 100vh;
     }
 }
