@@ -1,14 +1,7 @@
-/* Existing Styles + New Background Styles */
 :root {
-    --phone-width: 380px;
-    --phone-aspect-ratio: 9 / 19.5;
-    --phone-border-radius: 60px;
-    --phone-border-width: 12px;
-    --phone-bg-color: #000;
     --notch-width: 160px;
     --notch-height: 35px;
     --camera-opacity: 0.7;
-    /* New variable for camera opacity */
 
     /* WhatsApp Colors */
     --wa-dark-bg: #0b141a;
@@ -24,10 +17,7 @@
 
 body {
     background: #111;
-    /* Lighter background */
     background-image: radial-gradient(circle at center, rgba(200, 200, 200, 0.1), transparent 70%);
-    /* Soft glow behind phone */
-    /* Darker bg for cinematic feel */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,11 +36,9 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: 0;
-    /* Behind phone */
     display: flex;
     flex-direction: column;
     pointer-events: auto;
-    /* Allow hover */
     background: #000;
 }
 
@@ -61,9 +49,8 @@ body {
     overflow: hidden;
     display: flex;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    /* Subtle separation */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .belt-track {
@@ -76,9 +63,8 @@ body {
 
 .belt-item {
     height: 100%;
-    width: 30vw;
-    /* Wide format images */
-    min-width: 400px;
+    width: 20vw;
+    min-width: 250px;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
@@ -88,22 +74,18 @@ body {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    opacity: 0.8;
-    /* Increased default opacity */
-    filter: blur(3px) grayscale(40%);
+    opacity: 0.4;
+    filter: blur(8px) grayscale(80%);
     transition: all 0.15s ease-in-out;
     cursor: pointer;
 }
 
-/* Hover State */
 .belt-item img:hover {
     opacity: 0.6;
-    /* Reduced hover opacity so it's not too jarring */
     filter: blur(0) grayscale(0%);
     z-index: 10;
 }
 
-/* Animation */
 .track-left {
     animation: moveLeft 40s linear infinite;
 }
@@ -132,29 +114,8 @@ body {
     }
 }
 
-/* Belt Specifics - Optimized for ambient feel */
-.belt-row {
-    flex: 1;
-    border-top: 1px solid rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-}
-
-.belt-item {
-    width: 20vw;
-    /* Smaller belt items */
-    min-width: 250px;
-}
-
-.belt-item img {
-    opacity: 0.4;
-    /* Much dimmer by default */
-    filter: blur(8px) grayscale(80%);
-    /* More blur to stay in background */
-}
-
 .belt-top .belt-track {
     animation-duration: 80s;
-    /* Slower, more subtle */
 }
 
 .belt-middle .belt-track {
@@ -169,46 +130,33 @@ body {
 .container {
     position: relative;
     z-index: 10;
-    /* Above background */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1000vw;
+    width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     perspective: 900px;
     pointer-events: none;
-    /* Let clicks pass to background */
 }
 
 .iphone {
-    /* Large, crisp display */
-    height: 100vh;
-    max-height: 1000px;
-    width: auto;
-    min-width: 450px;
-    /* Wider for desktop readability */
+    height: 80vh;
     aspect-ratio: 9 / 19.5;
-    background: #000;
-
-    /* Highly Visible Bezel */
-    border: 12px solid #555;
-    /* Thicker, more substantial */
-    border-radius: 65px;
-
+    background: #393636;
+    border: 14px solid #555;
+    border-radius: 66px;
     position: relative;
     box-shadow:
         0 40px 100px rgba(0, 0, 0, 0.9),
         0 0 0 2px rgba(255, 255, 255, 0.2) inset,
         0 0 40px rgba(37, 211, 102, 0.1);
-
     transform-style: preserve-3d;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     pointer-events: auto;
 }
 
-/* Ringing State Glow */
 .iphone.ringing {
     box-shadow:
         0 0 50px rgba(37, 211, 102, 0.3),
@@ -224,15 +172,12 @@ body {
     content: '';
     position: absolute;
     background: #444;
-    /* Lighter for visibility */
     border-radius: 2px 0 0 2px;
     left: -12px;
-    /* Adjusted for thicker bezel */
     transition: all 0.3s;
     z-index: -1;
 }
 
-/* Active Buttons "Charging Up" Effect when ringing */
 .iphone.ringing::before,
 .iphone.ringing::after,
 .iphone.ringing .btns {
@@ -261,27 +206,21 @@ body {
 /* Volume Up */
 .iphone::before {
     top: 100px;
-    height: 400px;
+    height: 45px;
     width: 4px;
-    box-shadow: 0 50px 0 #222;
-    /* Volume Down via shadow */
+    box-shadow: 0 55px 0 #222;
 }
 
 .iphone.ringing::before {
-    box-shadow: 0 50px 0 #4f4;
-    /* Vol Down green glow in shadow? No, shadow color animation is tricky with shorthand. Let's simplify. */
-    /* Re-declaring to animate shadow separately if needed, but simple bg animation is safer/cleaner. */
-    box-shadow: 0 50px 0 currentColor;
-    /* Use currentColor to propagate animation? */
+    box-shadow: 0 55px 0 currentColor;
 }
 
 /* Power Button */
 .iphone::after {
-    top: 125px;
-    height: 60px;
+    top: 130px;
+    height: 80px;
     width: 4px;
-    right: -8px;
-    /* Right side */
+    right: -12px;
     left: auto;
     border-radius: 0 2px 2px 0;
 }
@@ -299,16 +238,14 @@ body {
 }
 
 @keyframes phone-pulse {
-    0% {
+
+    0%,
+    100% {
         border-color: #444;
     }
 
     50% {
         border-color: #777;
-    }
-
-    100% {
-        border-color: #444;
     }
 }
 
@@ -337,7 +274,7 @@ body {
     z-index: 100;
     width: var(--notch-width);
     height: var(--notch-height);
-    background: var(--phone-bg-color);
+    background: #000;
     border-radius: 0 0 20px 20px;
 }
 
@@ -353,11 +290,9 @@ body {
     height: 12px;
     width: 12px;
     background: rgba(59, 58, 58, var(--camera-opacity));
-    /* Using opacity variable */
     border-radius: 50%;
     position: relative;
     box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
-    /* Softer shadow */
 }
 
 .camera::after {
@@ -370,19 +305,39 @@ body {
     background: #181820;
     border-radius: 50%;
     opacity: 0.4;
-    /* More subtle camera lens reflection */
 }
 
 .butt1 {
-    height: 5px;
-    width: 140px;
-    background: rgba(255, 255, 255, 0.5);
+    height: 6px;
+    width: 150px;
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
     position: absolute;
-    bottom: 12px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
+    animation: wiggle 2s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    25% {
+        transform: translateX(-50%) scaleX(1.05);
+    }
+
+    50% {
+        transform: translateX(-50%) scaleX(0.95);
+    }
+
+    75% {
+        transform: translateX(-50%) scaleX(1.02);
+    }
 }
 
 /* Screens */
@@ -425,18 +380,16 @@ body {
 
 .call-status {
     font-size: 16px;
-    /* Increased */
     letter-spacing: 3px;
     color: #aeb9bf;
-    /* Brighter */
     font-weight: 600;
     margin-bottom: 30px;
 }
 
 .avatar-container {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
     position: relative;
 }
 
@@ -453,39 +406,37 @@ body {
 
 @keyframes pulse-ring {
     0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
     }
 
-    70% {
-        box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+    50% {
+        box-shadow: 0 0 0 25px rgba(37, 211, 102, 0.3);
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        box-shadow: 0 0 0 40px rgba(37, 211, 102, 0);
     }
 }
 
 .caller-name {
     font-size: 32px;
-    /* Increased */
     font-weight: 700;
     margin: 0;
 }
 
 .caller-sub {
     font-size: 18px;
-    /* Increased */
     color: #8696a0;
     margin: 8px 0 0;
 }
 
 .call-actions {
     display: flex;
-    justify-content: space-between;
-    padding: 0 40px;
+    justify-content: center;
+    gap: 80px;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .action-btn {
@@ -502,56 +453,77 @@ body {
 }
 
 .icon-circle {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .icon-circle img {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
 }
 
 .icon-circle.red {
     background: var(--wa-red);
+    box-shadow: 0 0 25px rgba(255, 59, 48, 0.5);
+    animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-red {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 25px rgba(255, 59, 48, 0.5);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 40px rgba(255, 59, 48, 0.7);
+    }
 }
 
 .icon-circle.green {
     background: var(--wa-green);
-    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
-    animation: icon-pulse 2s infinite;
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
+    animation: pulse-green 1.5s infinite;
 }
 
-@keyframes icon-pulse {
-    0% {
+@keyframes pulse-green {
+
+    0%,
+    100% {
         transform: scale(1);
-        box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+        box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
     }
 
     50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 35px rgba(37, 211, 102, 0.6);
-    }
-
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+        transform: scale(1.08);
+        box-shadow: 0 0 40px rgba(37, 211, 102, 0.7);
     }
 }
 
-/* Style for the Erocras text in action-btn */
-.action-btn.decline span {
-    color: #ff3b30;
-    text-shadow: 0 0 10px rgba(255, 59, 48, 0.3);
-    font-weight: 600;
-}
-
-.action-btn span {
-    font-size: 14px;
+.question-mark {
+    font-size: 42px;
+    font-weight: 700;
     color: white;
+}
+
+.btn-label {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.action-btn.decline .btn-label {
+    color: #ff6b5b;
+    text-shadow: 0 0 10px rgba(255, 59, 48, 0.4);
 }
 
 /* Waitlist Chat */
@@ -566,7 +538,6 @@ body {
     padding: 45px 15px 10px;
     display: flex;
     flex-direction: column;
-    /* Changed to center content */
     align-items: center;
     gap: 8px;
     color: var(--wa-text-primary);
@@ -592,22 +563,20 @@ body {
 }
 
 .header-avatar {
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .header-text h2 {
-    font-size: 20px;
-    /* Larger */
-    margin: 5px 0 0;
+    font-size: 24px;
+    margin: 8px 0 0;
     font-weight: 700;
 }
 
 .header-text p {
     font-size: 14px;
-    /* Larger */
     margin: 4px 0 0;
     color: var(--wa-text-secondary);
 }
@@ -649,10 +618,10 @@ body {
 }
 
 .msg-avatar {
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .message.sent .msg-avatar {
@@ -660,13 +629,12 @@ body {
 }
 
 .bubble {
-    padding: 14px 18px;
-    border-radius: 18px;
-    font-size: 18px;
-    /* Significantly larger text for the phone screen */
+    padding: 16px 20px;
+    border-radius: 20px;
+    font-size: 20px;
     line-height: 1.5;
     position: relative;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .message.received .bubble {
@@ -681,7 +649,6 @@ body {
     border-bottom-right-radius: 4px;
 }
 
-/* Quote flow animation */
 .fade-in {
     animation: fadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     opacity: 0;
@@ -708,15 +675,15 @@ body {
 
 .chat-input-area {
     background: var(--wa-header-bg);
-    padding: 10px 15px 25px;
+    padding: 14px 20px 30px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 12px;
 }
 
 .camera-icon {
     font-size: 32px;
-    /* Much larger cross */
     color: #8696a0;
     cursor: not-allowed;
     display: flex;
@@ -726,14 +693,12 @@ body {
     height: 40px;
 }
 
-/* Styled Cross Icon - Greyish */
 .camera-icon::before {
     content: '+';
     font-weight: 200;
     transform: scale(1.5);
 }
 
-/* Story Image Style */
 .msg-image {
     width: 100%;
     border-radius: 10px;
@@ -768,7 +733,6 @@ body {
     padding: 14px 20px;
     color: white;
     font-size: 18px;
-    /* Larger text */
     outline: none;
 }
 
@@ -780,7 +744,6 @@ body {
     padding: 5px;
 }
 
-/* Decline / "No" Flow - Dimming */
 .dimmed {
     opacity: 0.9 !important;
     transition: opacity 1s ease;
@@ -790,7 +753,6 @@ body {
 .autocomplete-suggestions {
     position: absolute;
     bottom: 60px;
-    /* Position above input */
     left: 15px;
     right: 15px;
     background: #1f2c34;
@@ -803,7 +765,6 @@ body {
     transition: all 0.2s ease-out;
     pointer-events: none;
     display: none;
-    /* Hidden by default */
 }
 
 .autocomplete-suggestions.visible {
@@ -833,24 +794,20 @@ body {
 }
 
 .suggestion-match {
-    color: #8696a0;
-    /* Dimmed text for already typed part if needed, or matched part */
     font-weight: bold;
     color: #25d366;
-    /* WhatsApp Green for highlight */
 }
 
-/* Responsiveness adjustments */
+/* Responsive */
 @media (max-width: 480px) {
-    :root {
-        --phone-border-radius: 40px;
-        --phone-border-width: 10px;
-        --notch-width: 120px;
-        --notch-height: 28px;
+    .iphone {
+        max-width: 90vw;
+        border-radius: 40px;
+        border-width: 10px;
     }
 
-    .iphone {
-        max-width: 10vw;
-        max-height: 100vh;
+    .notch {
+        width: 120px;
+        height: 28px;
     }
 }
