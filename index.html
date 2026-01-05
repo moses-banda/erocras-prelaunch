@@ -68,10 +68,9 @@
                 <div class="call-actions">
                     <div class="action-btn decline" onclick="handleDecline()">
                         <div class="icon-circle red">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiA5Yy0xLjYgMC0zLjEuMjgtNC41MS44NmwzLjAzIDMuMDMgMS40OC0xLjQ4Yy44NC4zOCAxLjc3LjU5IDIuNzUuNTlzMy4yNS0uOTMgNC4yMy0yLjU1bDEuNDggMS40OHMyLjg0LTIuODQgMi44NC0yLjg0Yy0yLjAxLTIuMDItNC44NC0zLjU1LTguMTEtNC4wNXYuMDJ6bS04LjQ5LjYxYy0uODUuODYtMi44NCAyLjg0LTIuODQgMi44NHMyLjg0IDIuODQgNC4zNSAxLjMzbDEuNDgtMS40OGMtMS4xLTEuMDEtMi4yLTItMi45OS0yLjY5eiIvPjwvc3ZnPg=="
-                                alt="Decline">
+                            <span style="font-size: 24px; font-weight: bold;">?</span>
                         </div>
-                        <span>Decline</span>
+                        <span style="width:100px; text-align:center; line-height: 1.2;">See What Happens</span>
                     </div>
                     <div class="action-btn accept" onclick="handleAccept()">
                         <div class="icon-circle green">
@@ -109,7 +108,11 @@
 
                 <div class="chat-input-area">
                     <div class="camera-icon">📷</div>
-                    <input type="email" placeholder="Type your email..." id="emailInput">
+                    <!-- wrapper for input to position suggestions relative to it if needed, or just absolute -->
+                    <div style="flex: 1; position: relative;">
+                        <input type="email" placeholder="Type your email..." id="emailInput" autocomplete="off">
+                        <div id="autocomplete-list" class="autocomplete-suggestions"></div>
+                    </div>
                     <div class="send-btn" onclick="submitEmail()">➤</div>
                 </div>
             </div>
@@ -134,7 +137,7 @@
         }
 
         function handleDecline() {
-            // Trigger "No" flow
+            // Trigger "See What Happens" / "No" flow
             document.getElementById('incoming-call').classList.remove('active');
             const chatScreen = document.getElementById('waitlist-chat');
             const chatBody = document.getElementById('chatBody');
@@ -145,7 +148,7 @@
             setTimeout(() => {
                 chatBody.innerHTML += `
                     <div class="message sent fade-in">
-                        <div class="bubble">No, thanks.</div>
+                        <div class="bubble">Just exploring...</div>
                     </div>
                 `;
                 chatBody.scrollTop = chatBody.scrollHeight;
@@ -158,9 +161,9 @@
         }
 
         const quotes = [
-            "That's okay — paths look different for everyone.",
-            "Some people join early. Some later. Both are fine.",
-            "You're still welcome here."
+            "We get it. It's confusing out there.",
+            "Most students don't realize the problem until it's too late.",
+            "But you don't have to figure it out alone."
         ];
 
         function startQuoteSequence(chatBody) {
@@ -178,7 +181,7 @@
                     `;
                     chatBody.scrollTop = chatBody.scrollHeight;
                 }, delay);
-                delay += 1500; // 1.5s delay between quotes
+                delay += 2000; // Increased delay for reading
             });
         }
 
@@ -199,6 +202,8 @@
                     </div>
                 `;
                 document.getElementById('emailInput').value = '';
+                document.getElementById('autocomplete-list').classList.remove('visible'); // Hide suggestions
+
                 setTimeout(() => {
                     chatBody.innerHTML += `
                     <div class="message received">
@@ -210,6 +215,93 @@
                 }, 1000);
             }
         }
+
+        // Email Autocomplete Logic
+        const emailInput = document.getElementById('emailInput');
+        const suggestionsBox = document.getElementById('autocomplete-list');
+        const domains = ['gmail.com', 'outlook.com', 'yahoo.com', 'vanderbilt.edu', 'edu'];
+
+        emailInput.addEventListener('input', function (e) {
+            const val = this.value;
+            suggestionsBox.innerHTML = '';
+            suggestionsBox.classList.remove('visible');
+
+            if (!val || !val.includes('@')) return;
+
+            const parts = val.split('@');
+            if (parts.length !== 2) return; // Only trigger if one '@' exists and typing after it
+
+            const prefix = parts[0];
+            const domainPart = parts[1];
+
+            const matches = domains.filter(d => d.startsWith(domainPart));
+
+            if (matches.length > 0) {
+                matches.forEach(domain => {
+                    const item = document.createElement('div');
+                    item.className = 'suggestion-item';
+
+                    // Highlight the match
+                    // Text: prefix + @ + domain
+                    // Display: prefix@ + (bold) domain suffix match?
+                    // Let's just bold the suggested part
+                    const matchSuffix = domain.substring(domainPart.length);
+                    item.innerHTML = `${prefix}@${domainPart}<span class="suggestion-match">${matchSuffix}</span>`;
+
+                    item.addEventListener('click', function () {
+                        emailInput.value = prefix + '@' + domain;
+                        suggestionsBox.classList.remove('visible');
+                        emailInput.focus();
+                    });
+
+                    suggestionsBox.appendChild(item);
+                });
+                suggestionsBox.classList.add('visible');
+            }
+        });
+
+        // Hide on click outside
+        document.addEventListener('click', function (e) {
+            if (e.target !== emailInput && e.target !== suggestionsBox) {
+                suggestionsBox.classList.remove('visible');
+            }
+        });
+
+        // Keyboard navigation
+        emailInput.addEventListener('keydown', function (e) {
+            if (!suggestionsBox.classList.contains('visible')) return;
+
+            const items = suggestionsBox.querySelectorAll('.suggestion-item');
+            if (items.length === 0) return;
+
+            let current = Array.from(items).findIndex(i => i.classList.contains('selected'));
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (current < items.length - 1) current++;
+                else current = 0;
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (current > 0) current--;
+                else current = items.length - 1;
+            } else if (e.key === 'Enter' || e.key === 'Tab') {
+                if (current > -1) {
+                    e.preventDefault();
+                    items[current].click();
+                } else if (items.length > 0 && e.key === 'Tab') {
+                    // Tab selects first if none selected
+                    e.preventDefault();
+                    items[0].click();
+                }
+                return;
+            } else {
+                return;
+            }
+
+            items.forEach(i => i.classList.remove('selected'));
+            if (current > -1) items[current].classList.add('selected');
+        });
+
     </script>
 </body>
 

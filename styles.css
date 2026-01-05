@@ -7,6 +7,8 @@
     --phone-bg-color: #000;
     --notch-width: 160px;
     --notch-height: 35px;
+    --camera-opacity: 0.7;
+    /* New variable for camera opacity */
 
     /* WhatsApp Colors */
     --wa-dark-bg: #0b141a;
@@ -21,7 +23,10 @@
 }
 
 body {
-    background: #000;
+    background: #111;
+    /* Lighter background */
+    background-image: radial-gradient(circle at center, rgba(200, 200, 200, 0.1), transparent 70%);
+    /* Soft glow behind phone */
     /* Darker bg for cinematic feel */
     display: flex;
     justify-content: center;
@@ -83,7 +88,8 @@ body {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    opacity: 0.2;
+    opacity: 0.35;
+    /* Increased default opacity */
     filter: blur(3px) grayscale(40%);
     transition: all 0.35s ease-out;
     cursor: pointer;
@@ -91,7 +97,8 @@ body {
 
 /* Hover State */
 .belt-item img:hover {
-    opacity: 1;
+    opacity: 0.6;
+    /* Reduced hover opacity so it's not too jarring */
     filter: blur(0) grayscale(0%);
     z-index: 10;
 }
@@ -127,15 +134,16 @@ body {
 
 /* Belt Specifics */
 .belt-top .belt-track {
-    animation-duration: 35s;
+    animation-duration: 45s;
+    /* Slower rotation */
 }
 
 .belt-middle .belt-track {
-    animation-duration: 45s;
+    animation-duration: 55s;
 }
 
 .belt-bottom .belt-track {
-    animation-duration: 38s;
+    animation-duration: 48s;
 }
 
 /* Container & Phone */
@@ -202,10 +210,12 @@ body {
 .camera {
     height: 12px;
     width: 12px;
-    background: #3b3a3a;
+    background: rgba(59, 58, 58, var(--camera-opacity));
+    /* Using opacity variable */
     border-radius: 50%;
     position: relative;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
+    /* Softer shadow */
 }
 
 .camera::after {
@@ -217,7 +227,8 @@ body {
     height: 4px;
     background: #181820;
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 0.4;
+    /* More subtle camera lens reflection */
 }
 
 .butt1 {
@@ -544,6 +555,60 @@ body {
 .dimmed {
     opacity: 0.9 !important;
     transition: opacity 1s ease;
+}
+
+/* Email Autocomplete */
+.autocomplete-suggestions {
+    position: absolute;
+    bottom: 60px;
+    /* Position above input */
+    left: 15px;
+    right: 15px;
+    background: #1f2c34;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+    display: none;
+    /* Hidden by default */
+}
+
+.autocomplete-suggestions.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    display: block;
+}
+
+.suggestion-item {
+    padding: 12px 15px;
+    color: #e9edef;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    background: #1f2c34;
+    transition: background 0.1s;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.selected {
+    background: #2a3942;
+}
+
+.suggestion-match {
+    color: #8696a0;
+    /* Dimmed text for already typed part if needed, or matched part */
+    font-weight: bold;
+    color: #25d366;
+    /* WhatsApp Green for highlight */
 }
 
 /* Responsiveness adjustments */
