@@ -138,6 +138,7 @@ body {
     box-sizing: border-box;
     perspective: 900px;
     pointer-events: none;
+    bottom: -8%;
 }
 
 .iphone {
@@ -155,6 +156,7 @@ body {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     pointer-events: auto;
+    bottom: 15%;
 }
 
 .iphone.ringing {
@@ -809,11 +811,93 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
     .iphone {
-        max-width: 90vw;
-        border-radius: 40px;
+        height: 65vh;
+        /* Scaled down for iPad to fit side-by-side */
+    }
+
+    .partners-panel {
+        height: 65vh;
+        width: 300px;
+        margin-left: 20px;
+        padding: 30px 15px;
+    }
+
+    .heading-classes {
+        font-size: 56px;
+    }
+}
+
+/* Maintain side-by-side down to iPad Portrait (768px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 60px 0;
+        overflow-y: auto;
+    }
+
+    .iphone {
+        height: 70vh;
+        margin-top: 40px;
+    }
+
+    .partners-panel {
+        height: auto;
+        width: 90vw;
+        margin-left: 0;
+        margin-top: 40px;
+    }
+
+    .heading-classes {
+        position: relative;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow: hidden;
+        /* Lock scroll for full screen feel */
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .partners-panel {
+        display: none !important;
+    }
+
+    .iphone {
+        height: 88vh;
+        /* Slightly smaller to leave room for heading */
+        width: auto;
+        aspect-ratio: 1 / 2.17;
+        margin-top: 5vh;
+        /* Push down to clear heading */
         border-width: 10px;
+        border-radius: 46px;
+        max-width: 92vw;
     }
 
     .notch {
@@ -822,12 +906,107 @@ body {
     }
 
     .heading-classes {
-        font-size: 84px;
+        font-size: 42px;
         z-index: 1000;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-weight: bold;
         position: absolute;
-        margin-top: 4%;
+        top: 3%;
+        margin-top: 0;
         color: white;
+        text-align: center;
+        width: 100%;
+        text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
+
+    .avatar-container {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 25px;
+    }
+
+    .call-status {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .caller-name {
+        font-size: 28px;
+    }
+
+    .caller-sub {
+        font-size: 18px;
+    }
+
+}
+
+/* Footer Styles */
+.main-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px 0;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    height: 13%;
+    z-index: 2000;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-link:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    opacity: 1;
+}
+
+.footer-link svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: filter 0.3s ease;
+}
+
+.footer-link:hover svg {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+.erocras-symbol {
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+@media (max-width: 480px) {
+    .main-footer {
+        padding: 10px 0;
+        gap: 20px;
+    }
+
+    .footer-link span {
+        font-size: 10px;
+    }
+
+    .footer-link svg {
+        width: 16px;
+        height: 16px;
     }
 }
