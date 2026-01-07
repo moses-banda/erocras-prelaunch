@@ -74,7 +74,7 @@ body {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    opacity: 0.4;
+    opacity: 0.25;
     filter: blur(8px) grayscale(80%);
     transition: all 0.15s ease-in-out;
     cursor: pointer;
@@ -940,73 +940,249 @@ body {
 
 }
 
-/* Footer Styles */
+/* Top Left Branding - Apple-Style Sophistication */
+.header-logo {
+    position: fixed;
+    top: 50px;
+    left: 60px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    /* Slightly bolder for clarity */
+    font-size: clamp(28px, 6vw, 48px);
+    /* Larger for better visibility */
+    letter-spacing: -0.5px;
+    color: #fff;
+    /* Solid white for absolute clarity */
+    z-index: 3000;
+    pointer-events: none;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Cinematic Full-Width 'Obsidian' Footer */
 .main-footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 12px 0;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    height: 220px;
+    /* Tall for visibility */
+
+    /* High-Contrast Obsidian Background */
+    background: linear-gradient(180deg,
+            rgba(10, 10, 10, 1) 0%,
+            rgba(5, 5, 5, 1) 100%);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    font-family: 'Outfit', sans-serif;
+    padding: 30px 0;
+    overflow: hidden;
+
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* Subtle Satin Polish */
+.main-footer::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(45deg,
+            transparent 45%,
+            rgba(255, 255, 255, 0.03) 50%,
+            transparent 55%);
+    animation: satinSheen 15s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes satinSheen {
+    0% {
+        transform: translate(-30%, -30%);
+    }
+
+    100% {
+        transform: translate(10%, 10%);
+    }
+}
+
+.footer-top-row {
+    width: 95%;
+    /* Wider for corner-to-corner feel */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
-    height: 13%;
-    z-index: 2000;
+    gap: 60px;
+    margin-bottom: 30px;
 }
 
-.footer-link {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 300;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* High-Visibility Golden Lines */
+.footer-top-row::before,
+.footer-top-row::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+}
+
+.logo-batch-container {
+    width: 600px;
+    /* Spacious for jumbo logos */
+    height: 100px;
+    position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
 }
 
-.footer-link:hover {
-    color: #fff;
-    transform: translateY(-3px);
+.logo-batch {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 65px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(10px);
+}
+
+.logo-batch.active {
     opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-.footer-link svg {
-    width: 18px;
-    height: 18px;
+.logo-batch img {
+    height: 80px;
+    /* JUMBO size for clarity */
+    width: auto;
+    filter: brightness(0) invert(1) contrast(1.5);
+    /* Crisp white logos */
+    transition: all 0.4s ease;
+}
+
+.logo-batch img:hover {
+    filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    transform: scale(1.1);
+}
+
+.footer-bottom-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.6);
+    /* Higher contrast */
+    font-size: 20px;
+    /* Large & clear */
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.footer-social-nav {
+    display: flex;
+    gap: 50px;
+    /* Wide spacing */
+    align-items: center;
+}
+
+.social-icon {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #fff;
+    transform: translateY(-4px);
+}
+
+.social-icon svg {
+    width: 32px;
+    /* Large icons */
+    height: 32px;
     fill: currentColor;
-    transition: filter 0.3s ease;
 }
 
-.footer-link:hover svg {
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-}
+@media (max-width: 768px) {
+    .header-logo {
+        top: 25px;
+        left: 25px;
+        font-size: 22px;
+        z-index: 5;
+    }
 
-.erocras-symbol {
-    font-weight: 800;
-    letter-spacing: 4px;
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-@media (max-width: 480px) {
     .main-footer {
-        padding: 10px 0;
-        gap: 20px;
+        height: auto;
+        padding: 40px 20px 100px 20px;
     }
 
-    .footer-link span {
-        font-size: 10px;
+    .footer-top-row::before,
+    .footer-top-row::after {
+        display: none;
     }
 
-    .footer-link svg {
-        width: 16px;
-        height: 16px;
+    .logo-batch-container {
+        width: 100%;
+        height: 80px;
+    }
+
+    .logo-batch {
+        gap: 35px;
+    }
+
+    .logo-batch img {
+        height: 60px;
+    }
+
+    .footer-copyright {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-logo {
+        top: 25px;
+        left: 30px;
+        font-size: 20px;
+        z-index: 5;
+    }
+
+    .main-footer {
+        height: auto;
+        padding: 30px 20px 100px 20px;
+        width: 95%;
+        border-radius: 40px;
+        bottom: 10px;
+    }
+
+    .footer-top-row::before,
+    .footer-top-row::after {
+        display: none;
+    }
+
+    .logo-batch-container {
+        width: 100%;
+        height: 60px;
+    }
+
+    .logo-batch {
+        gap: 30px;
+    }
+
+    .logo-batch img {
+        height: 50px;
     }
 }

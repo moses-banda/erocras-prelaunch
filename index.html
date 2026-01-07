@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <div class="header-logo">Erocras</div>
     <!-- Ambient Background Layer -->
 
     <div class="ambient-background">
@@ -416,10 +417,6 @@
                     const item = document.createElement('div');
                     item.className = 'suggestion-item';
 
-                    // Highlight the match
-                    // Text: prefix + @ + domain
-                    // Display: prefix@ + (bold) domain suffix match?
-                    // Let's just bold the suggested part
                     const matchSuffix = domain.substring(domainPart.length);
                     item.innerHTML = `${prefix}@${domainPart}<span class="suggestion-match">${matchSuffix}</span>`;
 
