@@ -11,6 +11,19 @@
 </head>
 
 <body>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+        // Initialize Supabase client (global for use in submitEmail)
+        const supabaseClient = supabase.createClient(
+            "https://ofeladmgzcsilvpmidss.supabase.co",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mZWxhZG1nemNzaWx2cG1pZHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4MDY5ODMsImV4cCI6MjA4MzM4Mjk4M30.CUMR5KJJ0IRRlvQ03F3gvpdZOokUB5bn4uC8dbOResw"
+        );
+    </script>
+
+
+
+
     <div class="header-logo">Erocras</div>
     <!-- Ambient Background Layer -->
 
@@ -359,9 +372,9 @@
             // In a real app we might reset the chat content here
         }
 
-        function submitEmail() {
+        async function submitEmail() {
             const emailInput = document.getElementById('emailInput');
-            const email = emailInput.value.trim();
+            const email = emailInput.value.trim().toLowerCase();
 
             // Regex: name@domain.com or name@domain.edu
             const emailRegex = /^[^\s@]+@[^\s@]+\.(com|edu)$/i;
@@ -374,13 +387,25 @@
                     </div>
                 `;
                 emailInput.value = '';
-                document.getElementById('autocomplete-list').classList.remove('visible'); // Hide suggestions
+                document.getElementById('autocomplete-list').classList.remove('visible');
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                // Save to Supabase
+                const { error } = await supabaseClient
+                    .from("waitlist")
+                    .insert({ email });
 
                 setTimeout(() => {
+                    let responseMsg = "Thanks! You've been added. 🎉";
+                    if (error) {
+                        responseMsg = error.code === "23505"
+                            ? "You're already on the waitlist! 💚"
+                            : "Hmm, something went wrong. Try again?";
+                    }
                     chatBody.innerHTML += `
                     <div class="message received">
                          <img src="snaps/caller.jpg" class="msg-avatar">
-                        <div class="bubble">Thanks! You've been added.</div>
+                        <div class="bubble">${responseMsg}</div>
                     </div>
                 `;
                     chatBody.scrollTop = chatBody.scrollHeight;
@@ -476,6 +501,7 @@
 
     </script>
     <script src="footer.js"></script>
+
 </body>
 
 </html>

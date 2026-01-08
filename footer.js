@@ -2,16 +2,26 @@
     const footer = document.createElement('footer');
     footer.className = 'main-footer';
 
-    const partnerLogos = [
-        'footer imgs/dsp-removebg-preview.png',
-        'footer imgs/inv_bank_club-removebg-preview.png',
-        'footer imgs/ktp-removebg-preview.png',
-        'footer imgs/phi_chi_Theta-removebg-preview.png',
-        'footer imgs/theta_tau_vandy-removebg-preview (1).png',
-        'footer imgs/vandy_bbsa-removebg-preview.png',
-        'footer imgs/vandy_consulting-removebg-preview.png',
-        'footer imgs/vandy_consulting_club-removebg-preview.png',
-        'footer imgs/vandy_scno-removebg-preview.png'
+    const companyValues = [
+        'Private by Design',
+        'Anonymous by Default',
+        'Purpose-First',
+        'Identity Optional',
+        'Interest Graph',
+        'Context-Aware Search',
+        'Smart Matching',
+        'Warm Introductions',
+        'Signal, Not Noise',
+        'Always-On',
+        'Judgement-Free',
+        'Intent-Driven',
+        'Name-Free',
+        'Meaningful Signals',
+        'Search With Context',
+        'Intent Insights',
+        'Voice Signal Summaries',
+        'Audience Pulse'
+
     ];
 
     const socialLinks = [
@@ -32,18 +42,18 @@
         }
     ];
 
-    // Split logos into batches of 3
+    // Split values into batches of 3
     let batches = [];
-    for (let i = 0; i < partnerLogos.length; i += 3) {
-        batches.push(partnerLogos.slice(i, i + 3));
+    for (let i = 0; i < companyValues.length; i += 3) {
+        batches.push(companyValues.slice(i, i + 3));
     }
 
     footer.innerHTML = `
         <div class="footer-top-row">
-            <div class="logo-batch-container">
+            <div class="values-batch-container">
                 ${batches.map((batch, index) => `
-                    <div class="logo-batch ${index === 0 ? 'active' : ''}" id="batch-${index}">
-                        ${batch.map(logo => `<img src="${logo}" alt="Partner Logo">`).join('')}
+                    <div class="values-batch ${index === 0 ? 'active' : ''}" id="batch-${index}">
+                        ${batch.map(value => `<span class="footer-value">${value}</span>`).join('')}
                     </div>
                 `).join('')}
             </div>
@@ -66,12 +76,12 @@
     let currentBatch = 0;
     setInterval(() => {
         const currentBatchEl = document.getElementById(`batch-${currentBatch}`);
-        currentBatchEl.classList.remove('active');
+        if (currentBatchEl) currentBatchEl.classList.remove('active');
 
         currentBatch = (currentBatch + 1) % batches.length;
 
         const nextBatchEl = document.getElementById(`batch-${currentBatch}`);
-        nextBatchEl.classList.add('active');
+        if (nextBatchEl) nextBatchEl.classList.add('active');
     }, 4500); // Switch every 4.5 seconds
 
 })();
