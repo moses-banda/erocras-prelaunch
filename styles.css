@@ -902,19 +902,24 @@ body {
     }
 
     .iphone {
-        height: 72vh;
-        max-height: 720px;
-        bottom: 10%;
+        height: 80vh;
+        /* Big like main screen */
+        max-height: none;
+        /* No caps */
+        bottom: 12%;
         /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
-        height: 70vh;
-        max-height: 700px;
-        width: 320px;
+        height: 75.5vh;
+        /* Match phone */
+        max-height: none;
+        /* No caps */
+        width: 360px;
         margin-left: 40px;
         padding: 30px 15px;
-        border-radius: 35px;
+        border-radius: 66px;
+        /* Match phone radius */
     }
 
     .main-footer {
@@ -944,20 +949,22 @@ body {
     }
 
     .iphone {
-        height: 68vh;
-        max-height: 650px;
-        bottom: 8%;
+        height: 78vh;
+        /* Bigger for iPad Pro */
+        max-height: none;
+        bottom: 10%;
         /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
-        height: 66vh;
-        max-height: 630px;
-        width: 280px;
+        height: 72vh;
+        max-height: none;
+        width: 340px;
         margin-left: 30px;
         padding: 25px 12px;
         gap: 30px;
-        border-radius: 30px;
+        border-radius: 66px;
+        /* Match phone radius */
     }
 
     .partner-heading {
