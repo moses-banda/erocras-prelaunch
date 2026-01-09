@@ -902,8 +902,7 @@ body {
         height: 72vh;
         max-height: 720px;
         bottom: 10%;
-        border-width: 12px;
-        border-radius: 55px;
+        /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
@@ -945,8 +944,7 @@ body {
         height: 68vh;
         max-height: 650px;
         bottom: 8%;
-        border-width: 11px;
-        border-radius: 50px;
+        /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
@@ -1004,8 +1002,7 @@ body {
         height: 62vh;
         max-height: 580px;
         bottom: 5%;
-        border-width: 10px;
-        border-radius: 45px;
+        /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
@@ -1084,9 +1081,8 @@ body {
         height: 55vh;
         max-height: 500px;
         bottom: 0;
-        border-width: 10px;
-        border-radius: 42px;
         margin-top: 20px;
+        /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
@@ -1148,16 +1144,12 @@ body {
         width: auto;
         aspect-ratio: 1 / 2.17;
         margin-top: 0;
-        border-width: 10px;
-        border-radius: 42px;
         max-width: 90vw;
         bottom: 0;
+        /* Keep original border and radius for consistent shape */
     }
 
-    .notch {
-        width: 130px;
-        height: 32px;
-    }
+    /* Keep all phone UI elements at original sizes */
 
     .header-logo {
         position: absolute;
@@ -1230,33 +1222,12 @@ body {
         width: auto;
         aspect-ratio: 1 / 2.17;
         margin-top: 0;
-        border-width: 8px;
-        border-radius: 38px;
         max-width: 92vw;
         bottom: 0;
+        /* Keep original border and radius for consistent shape */
     }
 
-    .notch {
-        width: 110px;
-        height: 28px;
-        border-radius: 0 0 22px 22px;
-    }
-
-    .speaker {
-        width: 40px;
-        height: 5px;
-    }
-
-    .camera {
-        width: 12px;
-        height: 12px;
-    }
-
-    .butt1 {
-        width: 100px;
-        height: 5px;
-        bottom: 10px;
-    }
+    /* Keep all phone UI elements (notch, speaker, camera, button) at original sizes */
 
     .header-logo {
         position: absolute;
