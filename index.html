@@ -3,101 +3,77 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords"
-        content="erocras,eroclas, eloclas, elo, hello class, 911, multipole, 911 for careers, career advice, Moses Banda vanderbilt, Simbarashe Zimuto, Prince Musonda, Kappa theta Pi vanderbilt, vanderbilt university, the wondry, anchor link vanderbilt, dsp vanderbilt, ktp vanderbilt, ak psi vanderbilt, startups at vanderbilt , immersion vanderbilt, sulivan family ideator program, owen graduate schoool of management, campus dinning vanderbilt, yes portal vanderbilt, fizzy vanderbilt, the hustler at vanderbilt anchorlink vanderbilt, common app, Zee me vanderbilt, phi chi theta housing portal vanderbilt, ingram scholarship vanderbilt">
-    <title>Iphone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Erocras | 911 for Careers</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="partners.css">
 </head>
 
 <body>
 
+    <!-- Supabase SDK (Defer for performance) -->
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <script>
-        // Initialize Supabase client (global for use in submitEmail)
-        const supabaseClient = supabase.createClient(
-            "https://ofeladmgzcsilvpmidss.supabase.co",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mZWxhZG1nemNzaWx2cG1pZHNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4MDY5ODMsImV4cCI6MjA4MzM4Mjk4M30.CUMR5KJJ0IRRlvQ03F3gvpdZOokUB5bn4uC8dbOResw"
-        );
-    </script>
 
-
-
-
+    <!-- Header Logo -->
     <div class="header-logo">Erocras</div>
-    <!-- Ambient Background Layer -->
 
+    <!-- Ambient / Belt Background -->
     <div class="ambient-background">
-
-        <!-- Belt 1 (Top) - Left to Right -->
+        <!-- Loop for Top Belt -->
         <div class="belt-row belt-top">
             <div class="belt-track track-left">
-                <div class="belt-item"><img src="snaps/bg1.png"></div>
-                <div class="belt-item"><img src="snaps/gem_ej1_1.png"></div>
-                <div class="belt-item"><img src="snaps/bg2.png"></div>
-                <div class="belt-item"><img src="snaps/gem_hok_4.png"></div>
-                <div class="belt-item"><img src="snaps/bg3.png"></div>
-                <div class="belt-item"><img src="snaps/gem_js3.png"></div>
-
-                <!-- repeat for seamless loop -->
-                <div class="belt-item"><img src="snaps/bg1.png"></div>
-                <div class="belt-item"><img src="snaps/gem_ej1_1.png"></div>
-                <div class="belt-item"><img src="snaps/bg2.png"></div>
-                <div class="belt-item"><img src="snaps/gem_hok_4.png"></div>
-                <div class="belt-item"><img src="snaps/bg3.png"></div>
-                <div class="belt-item"><img src="snaps/gem_js3.png"></div>
+                <!-- Repeating images for seamless loop -->
+                <div class="belt-item"><img src="snaps/bg1.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_ej1_1.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/bg2.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_hok_4.png" loading="lazy"></div>
+                <!-- Duplicate for loop -->
+                <div class="belt-item"><img src="snaps/bg1.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_ej1_1.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/bg2.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_hok_4.png" loading="lazy"></div>
             </div>
         </div>
 
-        <!-- Belt 2 (Middle) - Right to Left -->
+        <!-- Loop for Middle Belt -->
         <div class="belt-row belt-middle">
             <div class="belt-track track-right">
-                <div class="belt-item"><img src="snaps/gem_io2_2.png"></div>
-                <div class="belt-item"><img src="snaps/bg2.png"></div>
-                <div class="belt-item"><img src="snaps/gem_io2_2.png"></div>
-                <div class="belt-item"><img src="snaps/bg3.png"></div>
-                <div class="belt-item"><img src="snaps/gem_io2_3.png"></div>
-                <div class="belt-item"><img src="snaps/bg1.png"></div>
-
-                <!-- repeat -->
-                <div class="belt-item"><img src="snaps/gem_io2_2.png"></div>
-                <div class="belt-item"><img src="snaps/bg2.png"></div>
-                <div class="belt-item"><img src="snaps/gem_io2_2.png"></div>
-                <div class="belt-item"><img src="snaps/bg3.png"></div>
-                <div class="belt-item"><img src="snaps/gem_io2_3.png"></div>
-                <div class="belt-item"><img src="snaps/bg1.png"></div>
+                <div class="belt-item"><img src="snaps/gem_io2_2.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/bg2.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_io2_3.png" loading="lazy"></div>
+                <!-- Duplicate -->
+                <div class="belt-item"><img src="snaps/gem_io2_2.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/bg2.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_io2_3.png" loading="lazy"></div>
             </div>
         </div>
 
-        <!-- Belt 3 (Bottom) - Left to Right -->
+        <!-- Loop for Bottom Belt -->
         <div class="belt-row belt-bottom">
             <div class="belt-track track-left">
-                <div class="belt-item"><img src="snaps/gem_nr3.png"></div>
-                <div class="belt-item"><img src="snaps/bg1.png"></div>
-                <div class="belt-item"><img src="snaps/gem_y70.png"></div>
-                <div class="belt-item"><img src="snaps/bg2.png"></div>
-                <div class="belt-item"><img src="snaps/gem_ej1_1.png"></div>
-                <div class="belt-item"><img src="snaps/bg3.png"></div>
-
-                <!-- repeat -->
-                <div class="belt-item"><img src="snaps/gem_nr3.png"></div>
-                <div class="belt-item"><img src="snaps/bg1.png"></div>
-                <div class="belt-item"><img src="snaps/gem_y70.png"></div>
-                <div class="belt-item"><img src="snaps/bg2.png"></div>
-                <div class="belt-item"><img src="snaps/gem_ej1_1.png"></div>
-                <div class="belt-item"><img src="snaps/bg3.png"></div>
+                <div class="belt-item"><img src="snaps/gem_nr3.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/bg1.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_y70.png" loading="lazy"></div>
+                <!-- Duplicate -->
+                <div class="belt-item"><img src="snaps/gem_nr3.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/bg1.png" loading="lazy"></div>
+                <div class="belt-item"><img src="snaps/gem_y70.png" loading="lazy"></div>
             </div>
         </div>
-
     </div>
 
+    <!-- Main Content Area -->
+    <main class="main-stage">
 
-
-    <div class="container" data-tilt>
+        <!-- Phone Device -->
         <div class="iphone">
-            <div class="btns"></div>
             <div class="notch">
                 <div class="speaker"></div>
                 <div class="camera"></div>
@@ -105,407 +81,92 @@
 
             <!-- Screen 1: Incoming Call -->
             <div id="incoming-call" class="screen incoming-call active">
-                <div class="call-info">
-                    <div class="notification-pill fade-in">
+                <div class="call-header">
+                    <div class="notification-pill">
                         <span class="live-dot"></span>
-                        <span class="live-waitlist-count">419</span> online
+                        <span>419 online</span>
                     </div>
-                    <p class="call-status">INCOMING CALL</p>
-                    <div class="avatar-container">
-                        <img src="snaps/caller.jpg" alt="Caller Avatar" class="avatar pulse">
+                </div>
+
+                <div class="caller-info">
+                    <div class="avatar-wrapper">
+                        <div class="avatar-pulse"></div>
+                        <img src="snaps/caller.jpg" alt="Caller">
                     </div>
-                    <h1 class="caller-name">911 for Careers</h1>
-                    <p class="caller-sub">On-demand career advice when stuck</p>
+                    <h1>911 for Careers</h1>
+                    <p>Erocras Mobile</p>
                 </div>
 
                 <div class="call-actions">
-                    <div class="action-btn decline" onclick="handleDecline()">
-                        <div class="icon-circle red">
-                            <span class="question-mark">?</span>
-                        </div>
+                    <div class="action-btn" id="btn-decline">
+                        <div class="btn-circle decline">?</div>
                         <span class="btn-label">Erocras</span>
                     </div>
-                    <div class="action-btn accept" onclick="handleAccept()">
-                        <div class="icon-circle green">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0yMC4wMSAxNS4zOGMtMS4yMyAwLTIuNDItLjItMy41My0uNTYtLjM1LS4xMi0uNzQtLjAzLTEuMDEuMjRsLTEuNTMgMS41M2MtMi43MS0xLjQzLTQuOTItMy42My02LjM2LTYuMzZsMS41My0xLjUzYy4yNi0uMjYuMzYtLjY1LjI0LTEuMDItLjM2LTEuMTEtLjU2LTIuMy0uNTYtMy41MyAwLS41NC0uNDUtLjk5LS45OS0uOTlINC4xOWMtLjU0IDAtLjk5LjQ1LS45OS45OUMzLjIgMTMuNzEgOC40NiAxOSAxOC4wMSAxOWMuNTQgMCAuOTktLjQ1Ljk5LS45OXYtMy42M2MtLjAxLS41NS0uNDYtMS0xLS45OXoiLz48L3N2Zz4="
-                                alt="Accept">
-                        </div>
+                    <div class="action-btn" id="btn-accept">
+                        <div class="btn-circle accept">📞</div>
                         <span class="btn-label">Accept</span>
                     </div>
                 </div>
+                <div class="home-indicator"></div>
             </div>
 
-            <!-- Screen 2: Waitlist (WhatsApp Style) -->
+            <!-- Screen 2: Waitlist Chat -->
             <div id="waitlist-chat" class="screen waitlist-chat">
                 <div class="chat-header">
-                    <div class="back-btn" onclick="goBackToCall()">‹</div>
-                    <div class="chat-info">
-                        <img src="snaps/caller.jpg" alt="Avatar" class="header-avatar">
-                        <div class="header-text">
+                    <div class="back-btn" id="btn-back">‹</div>
+                    <div class="chat-profile">
+                        <img src="snaps/caller.jpg" alt="Profile">
+                        <div class="profile-text">
                             <h2>Join the Waitlist</h2>
                             <p>419 members</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="chat-body" id="chatBody">
-                    <div class="date-bubble">Today 8:24 AM </div>
-
+                <div class="chat-body" id="chat-body">
+                    <div class="date-bubble">Today</div>
                     <div class="message received">
                         <img src="snaps/caller.jpg" class="msg-avatar">
-                        <div class="bubble">
-                            Type your email to join the waitlist
-                        </div>
+                        <div class="bubble">Type your email to join the waitlist</div>
                     </div>
+                    <!-- Messages injected by JS -->
                 </div>
 
-                <div class="chat-input-area">
-                    <div class="camera-icon"></div>
-                    <!-- wrapper for input to position suggestions relative to it if needed, or just absolute -->
-                    <div style="flex: 1; position: relative;">
-                        <input type="email" placeholder="Type your email..." id="emailInput" autocomplete="off">
-                        <div id="autocomplete-list" class="autocomplete-suggestions"></div>
+                <div class="chat-input">
+                    <div class="input-wrapper">
+                        <input type="email" id="email-input" class="input-field" placeholder="Type message..."
+                            autocomplete="off">
+                        <div class="suggestions" id="suggestions-box"></div>
                     </div>
-                    <div class="send-btn" onclick="submitEmail()">➤</div>
+                    <div class="send-btn" id="btn-send">➤</div>
                 </div>
+                <div class="home-indicator"></div>
             </div>
-
-            <!-- Screen 3: Decline Options (Hidden/Unused now, simplified to No flow) -->
-            <div id="decline-options" class="screen decline-options">
-                <div class="response-container">
-                    <h2>Leave a message?</h2>
-                    <p>The user is currently busy.</p>
-                    <button class="msg-option" onclick="goBackToCall()">Return directly to call</button>
-                </div>
-            </div>
-
-            <div class="butt1"></div>
         </div>
 
-        <!-- Partners Side Panel -->
-        <div class="partners-panel">
+        <!-- Partners Panel (Right Side) -->
+        <aside class="partners-panel">
             <h2 class="partner-heading">Our Partners</h2>
-            <div class="belt-container-2d">
-                <div class="belt-track-2d">
-                    <!-- Logo Set 1 -->
-                    <div class="belt-item-2d"><img src="footer_imgs/dsp-removebg-preview.png" alt="DSP"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/inv_bank_club-removebg-preview.png" alt="IBC"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/ktp-removebg-preview.png" alt="KTP"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/phi_chi_Theta-removebg-preview.png" alt="PCT"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/theta_tau_vandy.png" alt="Theta Tau"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_bbsa-removebg-preview.png" alt="BBSA">
-                    </div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_consulting-removebg-preview.png" alt="VC">
-                    </div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_consulting_club-removebg-preview.png"
-                            alt="VCC"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_scno-removebg-preview.png" alt="SCNO">
-                    </div>
-
-                    <!-- Logo Set 2 (Duplicate for seamless loop) -->
-                    <div class="belt-item-2d"><img src="footer_imgs/dsp-removebg-preview.png" alt="DSP"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/inv_bank_club-removebg-preview.png" alt="IBC"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/ktp-removebg-preview.png" alt="KTP"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/phi_chi_Theta-removebg-preview.png" alt="PCT"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/theta_tau_vandy.png" alt="Theta Tau"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_bbsa-removebg-preview.png" alt="BBSA">
-                    </div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_consulting-removebg-preview.png" alt="VC">
-                    </div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_consulting_club-removebg-preview.png"
-                            alt="VCC"></div>
-                    <div class="belt-item-2d"><img src="footer_imgs/vandy_scno-removebg-preview.png" alt="SCNO">
-                    </div>
+            <div class="belt-container-vertical">
+                <div class="partners-track" id="partner-track">
+                    <!-- Duplicated for loop effect -->
+                    <img src="footer_imgs/dsp-removebg-preview.png" class="partner-logo" alt="DSP">
+                    <img src="footer_imgs/ktp-removebg-preview.png" class="partner-logo" alt="KTP">
+                    <img src="footer_imgs/theta_tau_vandy.png" class="partner-logo" alt="Theta Tau">
+                    <img src="footer_imgs/vandy_consulting_club-removebg-preview.png" class="partner-logo" alt="VCC">
+                    <!-- Repeat -->
+                    <img src="footer_imgs/dsp-removebg-preview.png" class="partner-logo" alt="DSP">
+                    <img src="footer_imgs/ktp-removebg-preview.png" class="partner-logo" alt="KTP">
+                    <img src="footer_imgs/theta_tau_vandy.png" class="partner-logo" alt="Theta Tau">
+                    <img src="footer_imgs/vandy_consulting_club-removebg-preview.png" class="partner-logo" alt="VCC">
                 </div>
             </div>
-        </div>
-    </div>
+        </aside>
 
-    <script>
-        // Initialize state
-        document.querySelector('.iphone').classList.add('ringing');
+    </main>
 
-        function handleAccept() {
-            document.querySelector('.iphone').classList.remove('ringing');
-            document.getElementById('incoming-call').classList.remove('active');
-            document.getElementById('waitlist-chat').classList.add('active');
-        }
-
-        function handleDecline() {
-            document.querySelector('.iphone').classList.remove('ringing');
-            // Trigger "See What Happens" / "No" flow
-            document.getElementById('incoming-call').classList.remove('active');
-            const chatScreen = document.getElementById('waitlist-chat');
-            const chatBody = document.getElementById('chatBody');
-
-            chatScreen.classList.add('active');
-
-            // 1. Insert "No" message (Simulated user response)
-            setTimeout(() => {
-                chatBody.innerHTML += `
-                    <div class="message sent fade-in">
-                        <div class="bubble">Just exploring...</div>
-                    </div>
-                `;
-                chatBody.scrollTop = chatBody.scrollHeight;
-
-                // 2. Wait 600ms
-                setTimeout(() => {
-                    startQuoteSequence(chatBody);
-                }, 600);
-            }, 300);
-        }
-
-        const stories = [
-            { text: "This is simba before he got a girlfriend...", img: "snaps/problem_charlie.png" },
-            { text: "Sarah during her midterms, overwhelmed and alone...", img: "snaps/problem_sarah.png" },
-            { text: "And Alex, facing another rejection without guidance...", img: "snaps/problem_alex.png" }
-        ];
-
-        let storyIndex = 0;
-        let homeTimeout = null;
-
-        function startQuoteSequence(chatBody) {
-            document.querySelector('.ambient-background').classList.add('dimmed');
-            showNextStory();
-        }
-
-        function showNextStory() {
-            const chatBody = document.getElementById('chatBody');
-            if (storyIndex >= stories.length) return;
-
-            const story = stories[storyIndex];
-
-            // 1. Show Text
-            setTimeout(() => {
-                const textMsg = document.createElement('div');
-                textMsg.className = 'message received fade-slide-in';
-                textMsg.innerHTML = `
-                    <img src="snaps/caller.jpg" class="msg-avatar">
-                    <div class="bubble">${story.text}</div>
-                `;
-                chatBody.appendChild(textMsg);
-                chatBody.scrollTop = chatBody.scrollHeight;
-
-                // 2. Show Image after delay
-                setTimeout(() => {
-                    const imgMsg = document.createElement('div');
-                    imgMsg.className = 'message received fade-slide-in';
-                    imgMsg.innerHTML = `
-                        <img src="snaps/caller.jpg" class="msg-avatar">
-                        <div class="bubble" style="padding: 5px;">
-                            <img src="${story.img}" class="msg-image">
-                        </div>
-                    `;
-                    chatBody.appendChild(imgMsg);
-                    chatBody.scrollTop = chatBody.scrollHeight;
-
-                    storyIndex++;
-
-                    // Determine next step
-                    if (storyIndex === 1) {
-                        // Midway option after 1st story
-                        setTimeout(showMidwayOption, 1500);
-                    } else if (storyIndex === 2) {
-                        // Ask back to home after 2nd story
-                        setTimeout(askBackToHome, 1500);
-                    } else if (storyIndex < stories.length) {
-                        // Keep going
-                        setTimeout(showNextStory, 3000);
-                    }
-                }, 1500);
-            }, 1000);
-        }
-
-        function showMidwayOption() {
-            const chatBody = document.getElementById('chatBody');
-            const option = document.createElement('div');
-            option.className = 'story-option';
-            option.innerText = "See more stories";
-            option.onclick = () => {
-                option.remove();
-                showNextStory();
-            };
-            chatBody.appendChild(option);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
-
-        function askBackToHome() {
-            const chatBody = document.getElementById('chatBody');
-            const question = document.createElement('div');
-            question.className = 'message received fade-slide-in';
-            question.innerHTML = `
-                <img src="snaps/caller.jpg" class="msg-avatar">
-                <div class="bubble">Do you want to go back to home?</div>
-            `;
-            chatBody.appendChild(question);
-
-            const options = document.createElement('div');
-            options.style.display = 'flex';
-            options.style.gap = '10px';
-            options.style.justifyContent = 'center';
-            options.innerHTML = `
-                <div class="story-option" id="yesHome">Yes</div>
-                <div class="story-option" id="noHome">No</div>
-            `;
-            chatBody.appendChild(options);
-            chatBody.scrollTop = chatBody.scrollHeight;
-
-            document.getElementById('yesHome').onclick = () => {
-                clearTimeout(homeTimeout);
-                goBackToCall();
-            };
-
-            document.getElementById('noHome').onclick = () => {
-                clearTimeout(homeTimeout);
-                options.remove();
-                showNextStory();
-            };
-
-            // 7 Second Timeout
-            homeTimeout = setTimeout(() => {
-                options.remove();
-                showNextStory();
-            }, 7000);
-        }
-
-        function goBackToCall() {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('incoming-call').classList.add('active');
-            document.querySelector('.ambient-background').classList.remove('dimmed');
-            // In a real app we might reset the chat content here
-        }
-
-        async function submitEmail() {
-            const emailInput = document.getElementById('emailInput');
-            const email = emailInput.value.trim().toLowerCase();
-
-            // Regex: name@domain.com or name@domain.edu
-            const emailRegex = /^[^\s@]+@[^\s@]+\.(com|edu)$/i;
-
-            if (email && emailRegex.test(email)) {
-                const chatBody = document.getElementById('chatBody');
-                chatBody.innerHTML += `
-                    <div class="message sent">
-                        <div class="bubble">${email}</div>
-                    </div>
-                `;
-                emailInput.value = '';
-                document.getElementById('autocomplete-list').classList.remove('visible');
-                chatBody.scrollTop = chatBody.scrollHeight;
-
-                // Save to Supabase
-                const { error } = await supabaseClient
-                    .from("waitlist")
-                    .insert({ email });
-
-                setTimeout(() => {
-                    let responseMsg = "Thanks! You've been added. 🎉";
-                    if (error) {
-                        responseMsg = error.code === "23505"
-                            ? "You're already on the waitlist! 💚"
-                            : "Hmm, something went wrong. Try again?";
-                    }
-                    chatBody.innerHTML += `
-                    <div class="message received">
-                         <img src="snaps/caller.jpg" class="msg-avatar">
-                        <div class="bubble">${responseMsg}</div>
-                    </div>
-                `;
-                    chatBody.scrollTop = chatBody.scrollHeight;
-                }, 1000);
-            } else if (email) {
-                // Shake input or show brief error if invalid
-                emailInput.style.border = '2px solid red';
-                setTimeout(() => emailInput.style.border = 'none', 1000);
-            }
-        }
-
-        // Email Autocomplete Logic
-        const emailInput = document.getElementById('emailInput');
-        const suggestionsBox = document.getElementById('autocomplete-list');
-        const domains = ['gmail.com', 'outlook.com', 'yahoo.com', 'vanderbilt.edu', 'edu'];
-
-        emailInput.addEventListener('input', function (e) {
-            const val = this.value;
-            suggestionsBox.innerHTML = '';
-            suggestionsBox.classList.remove('visible');
-
-            if (!val || !val.includes('@')) return;
-
-            const parts = val.split('@');
-            if (parts.length !== 2) return; // Only trigger if one '@' exists and typing after it
-
-            const prefix = parts[0];
-            const domainPart = parts[1];
-
-            const matches = domains.filter(d => d.startsWith(domainPart));
-
-            if (matches.length > 0) {
-                matches.forEach(domain => {
-                    const item = document.createElement('div');
-                    item.className = 'suggestion-item';
-
-                    const matchSuffix = domain.substring(domainPart.length);
-                    item.innerHTML = `${prefix}@${domainPart}<span class="suggestion-match">${matchSuffix}</span>`;
-
-                    item.addEventListener('click', function () {
-                        emailInput.value = prefix + '@' + domain;
-                        suggestionsBox.classList.remove('visible');
-                        emailInput.focus();
-                    });
-
-                    suggestionsBox.appendChild(item);
-                });
-                suggestionsBox.classList.add('visible');
-            }
-        });
-
-        // Hide on click outside
-        document.addEventListener('click', function (e) {
-            if (e.target !== emailInput && e.target !== suggestionsBox) {
-                suggestionsBox.classList.remove('visible');
-            }
-        });
-
-        // Keyboard navigation
-        emailInput.addEventListener('keydown', function (e) {
-            if (!suggestionsBox.classList.contains('visible')) return;
-
-            const items = suggestionsBox.querySelectorAll('.suggestion-item');
-            if (items.length === 0) return;
-
-            let current = Array.from(items).findIndex(i => i.classList.contains('selected'));
-
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (current < items.length - 1) current++;
-                else current = 0;
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                if (current > 0) current--;
-                else current = items.length - 1;
-            } else if (e.key === 'Enter' || e.key === 'Tab') {
-                if (current > -1) {
-                    e.preventDefault();
-                    items[current].click();
-                } else if (items.length > 0 && e.key === 'Tab') {
-                    // Tab selects first if none selected
-                    e.preventDefault();
-                    items[0].click();
-                }
-                return;
-            } else {
-                return;
-            }
-
-            items.forEach(i => i.classList.remove('selected'));
-            if (current > -1) items[current].classList.add('selected');
-        });
-
-    </script>
-    <script src="footer.js"></script>
-
+    <!-- Main Logic -->
+    <script src="script.js"></script>
 </body>
 
 </html>

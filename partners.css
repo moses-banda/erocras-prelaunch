@@ -1,44 +1,40 @@
+/* ========== PARTNERS PANEL ========== */
 .partners-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 40px;
-    height: 70vh;
-    /* Match iphone height */
-    width: 385px;
-    margin-left: 90px;
-    padding: 40px 20px;
+    gap: 30px;
+    height: 78vh;
+    width: auto;
+    aspect-ratio: 1 / 2;
+    min-width: 200px;
+    max-width: 385px;
+    margin-left: 60px;
+    padding: 30px 15px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 66px;
-    /* Matching iPhone radius */
+    border: 10px solid #050101;
+    border-radius: 50px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     position: relative;
-    margin-top: 5vh;
-    /* Align with phone nudge */
-    /* Removed bottom hack */
-    transform: none;
+    bottom: 13%;
     overflow: hidden;
     pointer-events: auto;
-    border: 14px solid #555;
-    /* Matching iPhone border */
 }
 
 .partner-heading {
-    color: hsl(0, 0%, 100%);
-    font-size: 34px;
+    color: #fff;
+    font-size: clamp(18px, 2.5vw, 34px);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
-    letter-spacing: 5px;
+    letter-spacing: clamp(2px, 0.5vw, 5px);
     text-transform: uppercase;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
     opacity: 0.3;
-
+    z-index: 20;
 }
-
 
 .belt-container-2d {
     width: 100%;
@@ -53,15 +49,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 60px;
+    gap: 40px;
     animation: scrollUp 35s linear infinite;
-    /* Slowed down down-to-up */
 }
 
 .belt-item-2d {
     flex-shrink: 0;
-    width: 220px;
-    height: 140px;
+    width: 80%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 1.5 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,7 +66,6 @@
     animation: fadePulseVertical 6s ease-in-out infinite;
 }
 
-/* Varied pulsing for each logo */
 .belt-item-2d:nth-child(3n+1) {
     animation-delay: 0s;
 }
@@ -102,21 +98,18 @@
     }
 
     100% {
-        transform: translateY(calc(-50% - 30px));
+        transform: translateY(calc(-50% - 20px));
     }
-
-    /* Move by half the track + half gap */
 }
 
 .belt-item-2d img {
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 90%;
+    max-height: 90%;
     object-fit: contain;
     filter: brightness(1.1) contrast(1.1);
     transition: all 0.4s ease;
 }
 
-/* Hover effects */
 .belt-track-2d:hover {
     animation-play-state: paused;
 }
@@ -130,15 +123,122 @@
     filter: brightness(1.3) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
 }
 
-/* ============================================
-   PARTNERS PANEL - RESPONSIVE BREAKPOINTS
-   ============================================ */
+/* ========== PARTNERS PANEL RESPONSIVE ========== */
 
-/* Hide on tablets and phones where it doesn't fit well */
+/* Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+    .partners-panel {
+        height: 73vh;
+        max-width: 420px;
+        border-width: 6px;
+        border-radius: 55px;
+        margin-left: 80px;
+    }
+}
+
+/* Standard Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    .partners-panel {
+        height: 75.5vh;
+        max-width: 380px;
+        margin-left: 70px;
+    }
+}
+
+/* Small Desktop (1200px - 1439px) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .partners-panel {
+        height: 74vh;
+        max-width: 340px;
+        margin-left: 50px;
+        border-width: 5px;
+        border-radius: 45px;
+    }
+}
+
+/* Laptop (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .partners-panel {
+        height: 75.5vh;
+        max-width: 300px;
+        margin-left: 35px;
+        padding: 25px 12px;
+        border-width: 5px;
+        border-radius: 40px;
+        gap: 25px;
+    }
+
+    .partner-heading {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    .belt-track-2d {
+        gap: 35px;
+    }
+}
+
+/* Tablet Landscape (834px - 1023px) */
+@media (min-width: 834px) and (max-width: 1023px) {
+    .partners-panel {
+        height: 72vh;
+        max-width: 260px;
+        min-width: 180px;
+        margin-left: 25px;
+        padding: 20px 10px;
+        border-width: 4px;
+        border-radius: 35px;
+        gap: 20px;
+        bottom: 10%;
+    }
+
+    .partner-heading {
+        font-size: 18px;
+        letter-spacing: 2px;
+        margin-top: 8px;
+    }
+
+    .belt-track-2d {
+        gap: 30px;
+    }
+
+    .belt-item-2d {
+        max-width: 160px;
+    }
+}
+
+/* Tablet Portrait (768px - 833px) */
+@media (min-width: 768px) and (max-width: 833px) {
+    .partners-panel {
+        height: 60vh;
+        max-width: 200px;
+        min-width: 150px;
+        margin-left: 15px;
+        padding: 15px 8px;
+        border-width: 3px;
+        border-radius: 28px;
+        gap: 15px;
+        bottom: 5%;
+    }
+
+    .partner-heading {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+        margin-top: 5px;
+    }
+
+    .belt-track-2d {
+        gap: 25px;
+    }
+
+    .belt-item-2d {
+        max-width: 130px;
+    }
+}
+
+/* Hide on mobile */
 @media (max-width: 767px) {
     .partners-panel {
         display: none !important;
     }
 }
-
-/* Keep partners panel consistent across all desktop/tablet sizes - only hide on mobile */
