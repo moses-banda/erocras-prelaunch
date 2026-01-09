@@ -145,6 +145,8 @@ body {
     border: 14px solid #555;
     border-radius: 66px;
     position: relative;
+    margin-top: 5vh;
+    /* Nudge down to avoid top crop */
     /* Removed bottom hack - use flex centering */
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9), inset 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0 40px rgba(37, 211, 102, 0.1);
     transform-style: preserve-3d;

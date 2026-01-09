@@ -16,6 +16,8 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     position: relative;
+    margin-top: 5vh;
+    /* Align with phone nudge */
     /* Removed bottom hack */
     transform: none;
     overflow: hidden;
