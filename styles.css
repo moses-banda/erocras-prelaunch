@@ -945,27 +945,34 @@ body {
 @media (min-width: 834px) and (max-width: 1023px) {
     .container {
         flex-direction: row;
-        bottom: -3%;
+        bottom: 0;
+        align-items: center;
     }
 
     .iphone {
-        height: 78vh;
-        /* Bigger for iPad Pro */
+        height: 70vh;
+        /* Reduced to fit landscape height */
         max-height: none;
-        bottom: 10%;
+        bottom: 5%;
+        margin-top: 40px;
+        /* Clear header logo */
         /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
-        height: 72vh;
+        height: 65vh;
+        /* Reduced to fit landscape height */
         max-height: none;
-        width: 340px;
+        width: 300px;
         margin-left: 30px;
         padding: 25px 12px;
         gap: 30px;
         border-radius: 66px;
         /* Match phone radius */
+        margin-top: 40px;
+        /* Clear header logo */
     }
+
 
     .partner-heading {
         font-size: 26px;
@@ -1009,21 +1016,25 @@ body {
     }
 
     .iphone {
-        height: 62vh;
-        max-height: 580px;
+        height: 65vh;
+        /* Fit comfortably in portrait */
+        max-height: none;
         bottom: 5%;
+        margin-top: 50px;
         /* Keep original border and radius for consistent shape */
     }
 
     .partners-panel {
         height: 60vh;
-        max-height: 560px;
+        max-height: none;
         width: 240px;
         margin-left: 20px;
         padding: 20px 10px;
         gap: 25px;
-        border-radius: 28px;
-        border-width: 5px;
+        border-radius: 66px;
+        border-width: 14px;
+        /* Ensure 14px like iPhone */
+        margin-top: 50px;
     }
 
     .partner-heading {
