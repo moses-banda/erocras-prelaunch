@@ -461,8 +461,8 @@ body {
 }
 
 .icon-circle {
-    width: 120px;
-    height: 120px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -523,7 +523,7 @@ body {
 }
 
 .btn-label {
-    font-size: 24px;
+    font-size: 18px;
     color: white;
     font-weight: 500;
     margin-top: 8px;
