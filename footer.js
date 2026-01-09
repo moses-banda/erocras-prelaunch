@@ -72,7 +72,7 @@
 
     document.body.appendChild(footer);
 
-    // Batch switching logic
+    // Batch switching log
     let currentBatch = 0;
     setInterval(() => {
         const currentBatchEl = document.getElementById(`batch-${currentBatch}`);
