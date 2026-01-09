@@ -106,10 +106,6 @@
             <!-- Screen 1: Incoming Call -->
             <div id="incoming-call" class="screen incoming-call active">
                 <div class="call-info">
-                    <div class="notification-pill fade-in">
-                        <span class="live-dot"></span>
-                        <span class="live-waitlist-count">419</span> online
-                    </div>
                     <p class="call-status">INCOMING CALL</p>
                     <div class="avatar-container">
                         <img src="snaps/caller.jpg" alt="Caller Avatar" class="avatar pulse">
@@ -143,7 +139,7 @@
                         <img src="snaps/caller.jpg" alt="Avatar" class="header-avatar">
                         <div class="header-text">
                             <h2>Join the Waitlist</h2>
-                            <p class="live-waitlist-count" data-format="members">419 members</p>
+                            <p>419 members</p>
                         </div>
                     </div>
                 </div>
@@ -224,70 +220,6 @@
     <script>
         // Initialize state
         document.querySelector('.iphone').classList.add('ringing');
-
-        // --- Real-Time Waitlist Logic ---
-        async function initWaitlistCount() {
-            try {
-                // 1. Fetch initial count
-                const { count, error } = await supabaseClient
-                    .from('waitlist')
-                    .select('*', { count: 'exact', head: true });
-
-                if (count !== null) {
-                    updateCountDisplay(count);
-                }
-
-                // 2. Subscribe to new insertions
-                supabaseClient
-                    .channel('waitlist-realtime')
-                    .on(
-                        'postgres_changes',
-                        { event: 'INSERT', schema: 'public', table: 'waitlist' },
-                        (payload) => {
-                            // Optimistically increment or refetch
-                            // For simplicity, we can just refetch to be sure, or increment local DOM
-                            // Refetching is safer for distinct counts, but incrementing is cooler/faster visual
-                            incrementCountDisplay();
-                        }
-                    )
-                    .subscribe();
-
-            } catch (err) {
-                console.error("Error init waitlist:", err);
-            }
-        }
-
-        function updateCountDisplay(num) {
-            const elements = document.querySelectorAll('.live-waitlist-count');
-            elements.forEach(el => {
-                // If element has data-format="members", append " members"
-                if (el.dataset.format === 'members') {
-                    el.innerText = num + ' members';
-                } else {
-                    el.innerText = num;
-                }
-            });
-        }
-
-        function incrementCountDisplay() {
-            const elements = document.querySelectorAll('.live-waitlist-count');
-            elements.forEach(el => {
-                let currentText = el.innerText.replace(' members', '').replace(',', '');
-                let currentNum = parseInt(currentText, 10);
-                if (!isNaN(currentNum)) {
-                    let newNum = currentNum + 1;
-                    if (el.dataset.format === 'members') {
-                        el.innerText = newNum + ' members';
-                    } else {
-                        el.innerText = newNum;
-                    }
-                }
-            });
-        }
-
-        // Start fetching
-        initWaitlistCount();
-        // -----------------------------
 
         function handleAccept() {
             document.querySelector('.iphone').classList.remove('ringing');
@@ -469,9 +401,6 @@
                         responseMsg = error.code === "23505"
                             ? "You're already on the waitlist! 💚"
                             : "Hmm, something went wrong. Try again?";
-                    } else {
-                        // Optimistic update for self
-                        incrementCountDisplay();
                     }
                     chatBody.innerHTML += `
                     <div class="message received">

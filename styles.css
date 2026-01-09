@@ -125,20 +125,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    min-height: 100vh;
-    /* Use min-height */
+    width: 100vw;
     height: 100vh;
     perspective: 900px;
     pointer-events: none;
-    /* Allows clicks to pass through to ambient bg if needed, but usually we want interactivity on children */
-    overflow: hidden;
-    /* Prevent scrollbars */
-}
-
-/* Allow pointer events on children */
-.container>* {
-    pointer-events: auto;
+    bottom: -8%;
+    /* Restore original bottom offset if that's what positioned it correctly */
 }
 
 .iphone {
@@ -371,52 +363,6 @@ body {
     color: #aeb9bf;
     font-weight: 600;
     margin-bottom: 30px;
-}
-
-/* Real-time Notification Pill */
-.notification-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 8px 16px;
-    /* Larger padding for visibility */
-    border-radius: 20px;
-    font-size: 16px;
-    /* Larger font */
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    margin-bottom: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    z-index: 20;
-}
-
-.live-dot {
-    width: 8px;
-    height: 8px;
-    background: #25d366;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #25d366;
-    animation: livePulse 2s infinite;
-}
-
-@keyframes livePulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.5);
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
 }
 
 .avatar-container {
