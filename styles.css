@@ -817,9 +817,11 @@ body {
 /* Extra Large Screens (4K, 2560px+) */
 @media (min-width: 2560px) {
     .iphone {
-        height: 70vh;
-        max-height: 900px;
-        bottom: 10%;
+        height: 80vh;
+        /* Reverted to main screen size */
+        max-height: 1200px;
+        /* Allow it to be big and clear */
+        bottom: 15%;
     }
 
     .partners-panel {
