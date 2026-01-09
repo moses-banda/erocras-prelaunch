@@ -991,20 +991,31 @@ body {
     }
 
     .main-footer {
-        height: 160px;
-        padding: 15px 0;
+        /* Transform to floating glass bar */
+        width: auto;
+        min-width: 500px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        height: auto;
+        padding: 15px 40px;
+        border-radius: 50px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-top-row {
+        gap: 30px;
+        margin-bottom: 15px;
     }
 
     .footer-value {
-        font-size: 1.5rem;
-    }
-
-    .values-batch {
-        gap: 50px;
+        font-size: 1.1rem;
     }
 
     .footer-copyright {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -1059,26 +1070,31 @@ body {
     }
 
     .main-footer {
-        height: 140px;
-        padding: 12px 0;
+        height: auto;
+        width: 90%;
+        max-width: 400px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        padding: 15px;
+        border-radius: 30px;
+        /* Floating Pill Shape */
+        background: rgba(10, 10, 10, 0.85);
+        /* Darker, sleeker */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
-    .footer-value {
-        font-size: 1.3rem;
-    }
-
-    .values-batch {
-        gap: 40px;
-    }
-
-    .values-batch-container {
-        width: 100%;
-        height: 100px;
+    .footer-top-row {
+        display: none;
+        /* Hide values on small screens for cleaner look */
     }
 
     .footer-copyright {
-        font-size: 0.9rem;
-        letter-spacing: 2px;
+        font-size: 0.75rem;
+        margin-bottom: 5px;
     }
 
     .social-icon svg {
