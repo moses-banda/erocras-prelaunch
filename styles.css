@@ -125,11 +125,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
+    min-height: 100vh;
+    /* Use min-height */
     height: 100vh;
     perspective: 900px;
     pointer-events: none;
-    bottom: -8%;
+    /* Allows clicks to pass through to ambient bg if needed, but usually we want interactivity on children */
+    overflow: hidden;
+    /* Prevent scrollbars */
+}
+
+/* Allow pointer events on children */
+.container>* {
+    pointer-events: auto;
 }
 
 .iphone {
@@ -370,14 +379,18 @@ body {
     align-items: center;
     gap: 8px;
     background: rgba(255, 255, 255, 0.1);
-    padding: 6px 12px;
+    padding: 8px 16px;
+    /* Larger padding for visibility */
     border-radius: 20px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    /* Larger font */
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 20;
 }
 
 .live-dot {
