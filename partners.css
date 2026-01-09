@@ -127,9 +127,137 @@
     filter: brightness(1.3) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
 }
 
-/* Responsive */
-@media (max-width: 480px) {
+/* ============================================
+   PARTNERS PANEL - RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Hide on tablets and phones where it doesn't fit well */
+@media (max-width: 767px) {
     .partners-panel {
         display: none !important;
+    }
+}
+
+/* Tablet Portrait (768px - 833px) */
+@media (min-width: 768px) and (max-width: 833px) {
+    .partners-panel {
+        height: 60vh;
+        max-height: 560px;
+        width: 240px;
+        margin-left: 20px;
+        padding: 20px 10px;
+        gap: 25px;
+        border-radius: 28px;
+        border-width: 5px;
+    }
+
+    .partner-heading {
+        font-size: 22px;
+        letter-spacing: 2px;
+        margin-top: 15px;
+    }
+
+    .belt-item-2d {
+        width: 160px;
+        height: 100px;
+    }
+
+    .belt-track-2d {
+        gap: 40px;
+    }
+}
+
+/* Tablet Landscape / iPad Pro (834px - 1023px) */
+@media (min-width: 834px) and (max-width: 1023px) {
+    .partners-panel {
+        height: 66vh;
+        max-height: 630px;
+        width: 280px;
+        margin-left: 30px;
+        padding: 25px 12px;
+        gap: 30px;
+        border-radius: 30px;
+    }
+
+    .partner-heading {
+        font-size: 26px;
+        letter-spacing: 3px;
+    }
+
+    .belt-item-2d {
+        width: 180px;
+        height: 110px;
+    }
+
+    .belt-track-2d {
+        gap: 50px;
+    }
+}
+
+/* Laptop (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .partners-panel {
+        height: 70vh;
+        max-height: 700px;
+        width: 320px;
+        margin-left: 40px;
+        padding: 30px 15px;
+        border-radius: 35px;
+    }
+
+    .partner-heading {
+        font-size: 28px;
+    }
+
+    .belt-item-2d {
+        width: 200px;
+        height: 120px;
+    }
+}
+
+/* Small Desktop / Large Laptop (1200px - 1439px) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    .partners-panel {
+        height: 74vh;
+        max-height: 780px;
+        width: 350px;
+        margin-left: 60px;
+    }
+}
+
+/* Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+    .partners-panel {
+        height: 73vh;
+        max-height: 830px;
+        width: 400px;
+        margin-left: 100px;
+    }
+
+    .partner-heading {
+        font-size: 38px;
+    }
+
+    .belt-item-2d {
+        width: 240px;
+        height: 150px;
+    }
+}
+
+/* Extra Large (4K) */
+@media (min-width: 2560px) {
+    .partners-panel {
+        height: 68vh;
+        max-height: 880px;
+        width: 420px;
+    }
+
+    .partner-heading {
+        font-size: 42px;
+    }
+
+    .belt-item-2d {
+        width: 260px;
+        height: 160px;
     }
 }
