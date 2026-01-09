@@ -814,11 +814,12 @@ body {
 @media (max-width: 1024px) {
     .iphone {
         height: 65vh;
-        /* Scaled down for iPad to fit side-by-side */
+        max-height: 700px;
     }
 
     .partners-panel {
         height: 65vh;
+        max-height: 700px;
         width: 300px;
         margin-left: 20px;
         padding: 30px 15px;
@@ -848,6 +849,7 @@ body {
 
     .iphone {
         height: 70vh;
+        max-height: 600px;
         margin-top: 40px;
     }
 
@@ -856,6 +858,8 @@ body {
         width: 90vw;
         margin-left: 0;
         margin-top: 40px;
+        display: none !important;
+        /* Temporarily hide on mobile to simplify layout issues */
     }
 
     .heading-classes {
