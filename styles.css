@@ -134,7 +134,8 @@ body {
 }
 
 .iphone {
-    height: 80vh;
+    height: 70vh;
+    /* Reduced to fit comfortably */
     max-height: 850px;
     /* Safety cap for massive screens */
     width: auto;

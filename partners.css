@@ -4,7 +4,8 @@
     align-items: center;
     justify-content: flex-start;
     gap: 40px;
-    height: 75.5vh;
+    height: 70vh;
+    /* Match iphone height */
     width: 385px;
     margin-left: 90px;
     padding: 40px 20px;
@@ -15,9 +16,7 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     position: relative;
-    bottom: 13%;
-    margin-bottom: 2%;
-    /* Slightly adjusted to visually align perfectly with phone */
+    /* Removed bottom hack */
     transform: none;
     overflow: hidden;
     pointer-events: auto;
