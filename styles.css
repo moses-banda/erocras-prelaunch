@@ -824,8 +824,10 @@ body {
     }
 
     .partners-panel {
-        height: 68vh;
-        max-height: 880px;
+        height: 75.5vh;
+        /* Match main screen proportion */
+        max-height: none;
+        /* Let it grow big */
         width: 420px;
     }
 
