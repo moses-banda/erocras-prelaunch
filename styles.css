@@ -13,11 +13,14 @@
     --wa-text-secondary: #8696a0;
     --wa-green: #25d366;
     --wa-red: #ff3b30;
+    --glow-color: rgba(37, 211, 102, 0.4);
 }
 
 body {
-    background: #111;
-    background-image: radial-gradient(circle at center, rgba(200, 200, 200, 0.1), transparent 70%);
+    background: #0a0a0a;
+    background-image:
+        radial-gradient(circle at 30% 40%, rgba(40, 40, 40, 0.3), transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(30, 30, 30, 0.2), transparent 50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,19 +147,20 @@ body {
 .iphone {
     height: 80vh;
     aspect-ratio: 1/ 2.17;
-    background: #393636;
-    border: 14px solid #555;
-    border-radius: 66px;
+    background: #1a1a1a;
+    border: 10px solid #3a3a3a;
+    border-radius: 45px;
+    /* Softer, more realistic */
     position: relative;
     box-shadow:
         0 40px 100px rgba(0, 0, 0, 0.9),
-        0 0 0 2px rgba(255, 255, 255, 0.2) inset,
-        0 0 40px rgba(37, 211, 102, 0.1);
+        0 0 0 2px rgba(255, 255, 255, 0.1) inset,
+        0 0 60px rgba(37, 211, 102, 0.15);
     transform-style: preserve-3d;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
     pointer-events: auto;
-    bottom: 15%;
+    bottom: 10%;
 }
 
 .iphone.ringing {
@@ -272,14 +276,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    padding: 0 15px;
+    gap: 10px;
+    padding: 0 12px;
     z-index: 100;
-    width: var(--notch-width);
-    height: var(--notch-height);
-    background: #4b4848;
-    border: 1px solid #4b4848;
-    border-radius: 0 0 30px 30px;
+    width: 120px;
+    height: 35px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 0 0 20px 20px;
 }
 
 .speaker {
@@ -372,8 +376,13 @@ body {
 /* Incoming Call */
 .incoming-call {
     background: radial-gradient(circle at center, #1a2a33 0%, #000000 100%);
-    justify-content: space-between;
-    padding: 80px 20px 60px;
+    justify-content: flex-start;
+    padding-top: 8%;
+    /* 8% from top */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 12%;
+    /* 12% from bottom */
     box-sizing: border-box;
     color: white;
     text-align: center;
@@ -387,17 +396,18 @@ body {
 }
 
 .call-status {
-    font-size: 33px;
-    letter-spacing: 3px;
+    font-size: 20px;
+    letter-spacing: 4px;
     color: #aeb9bf;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .avatar-container {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 40px;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 25px;
     position: relative;
 }
 
@@ -406,6 +416,7 @@ body {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid rgba(37, 211, 102, 0.5);
 }
 
 .avatar.pulse {
@@ -427,24 +438,28 @@ body {
 }
 
 .caller-name {
-    font-size: 35px;
+    font-size: 26px;
     font-weight: 700;
     margin: 0;
 }
 
 .caller-sub {
-    font-size: 25px;
+    font-size: 14px;
     color: #8696a0;
     margin: 8px 0 0;
 }
 
 .call-actions {
     display: flex;
-    justify-content: center;
-    gap: 80px;
-    width: 100%;
+    justify-content: space-between;
+    width: 80%;
+    /* 10% margin on each side */
+    margin: 0 auto;
     box-sizing: border-box;
-    margin-bottom: 60px;
+    position: absolute;
+    bottom: 12%;
+    left: 10%;
+    right: 10%;
 }
 
 .action-btn {
@@ -461,8 +476,8 @@ body {
 }
 
 .icon-circle {
-    width: 90px;
-    height: 90px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -499,7 +514,7 @@ body {
 .icon-circle.green {
     background: var(--wa-green);
     box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
-    animation: pulse-green 1.5s infinite;
+    animation: blink-green 0.8s infinite;
 }
 
 @keyframes pulse-green {
@@ -516,17 +531,32 @@ body {
     }
 }
 
+/* Blinking animation for call button */
+@keyframes blink-green {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 30px rgba(37, 211, 102, 0.8);
+    }
+
+    50% {
+        opacity: 0.6;
+        box-shadow: 0 0 50px rgba(37, 211, 102, 1);
+    }
+}
+
 .question-mark {
-    font-size: 42px;
+    font-size: 28px;
     font-weight: 700;
     color: white;
 }
 
 .btn-label {
-    font-size: 18px;
+    font-size: 12px;
     color: white;
     font-weight: 500;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 .action-btn.decline .btn-label {
@@ -814,130 +844,133 @@ body {
    RESPONSIVE MEDIA QUERIES - UNIVERSAL SCALING
    ============================================ */
 
-/* Extra Large Screens (4K, 2560px+) */
-@media (min-width: 2560px) {
-    .iphone {
-        height: 80vh;
-        max-height: none;
-        /* Let it grow big on big screens */
-        bottom: 15%;
+/* Desktop (Landscape) - The "Legit Cool" Look */
+@media (min-width: 1024px) {
+    body {
+        overflow: hidden;
+        /* No scroll */
     }
 
-    .partners-panel {
-        height: 75.5vh;
-        /* Match main screen proportion */
-        max-height: none;
-        /* Let it grow big */
-        width: 420px;
-    }
-
-    .main-footer {
-        height: 200px;
-    }
-
-    .footer-value {
-        font-size: 2.8rem;
-    }
-}
-
-/* Large Desktop (1920px - 2559px) */
-@media (min-width: 1920px) and (max-width: 2559px) {
-    .iphone {
-        height: 75vh;
-        max-height: 850px;
-        bottom: 12%;
-    }
-
-    .partners-panel {
-        height: 73vh;
-        max-height: 830px;
-    }
-}
-
-/* Standard Desktop (1440px - 1919px) - BASE DESIGN */
-@media (min-width: 1440px) and (max-width: 1919px) {
-    .iphone {
-        height: 80vh;
-        bottom: 15%;
-    }
-
-    .partners-panel {
-        height: 75.5vh;
-        bottom: 13%;
-    }
-}
-
-/* Small Desktop / Large Laptop (1200px - 1439px) */
-@media (min-width: 1200px) and (max-width: 1439px) {
-    .iphone {
-        height: 78vh;
-        max-height: 800px;
-        bottom: 12%;
-    }
-
-    .partners-panel {
-        height: 74vh;
-        max-height: 780px;
-        width: 350px;
-        margin-left: 60px;
-    }
-
-    .main-footer {
-        height: 200px;
-    }
-
-    .footer-value {
-        font-size: 2rem;
-    }
-
-    .values-batch {
-        gap: 80px;
-    }
-}
-
-/* Laptop (1024px - 1199px) */
-@media (min-width: 1024px) and (max-width: 1199px) {
     .container {
-        bottom: -5%;
+        height: calc(100vh - 120px);
+        /* Fill space above footer */
+        bottom: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 40px;
+        padding-bottom: 15vh;
+        /* Large gap from footer */
+        margin-top: -5vh;
+        /* Shifting "much upper" */
     }
 
+    /* Phone Sizing */
     .iphone {
-        height: 80vh;
-        /* Big like main screen */
-        max-height: none;
-        /* No caps */
-        bottom: 12%;
-        /* Keep original border and radius for consistent shape */
+        height: 72vh;
+        max-height: 800px;
+        bottom: auto;
+        margin: 0;
+        border-radius: 45px;
+        border: 10px solid #3a3a3a;
+        box-shadow:
+            0 0 80px var(--glow-color),
+            0 40px 100px rgba(0, 0, 0, 0.9),
+            0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+        transform: none;
     }
 
+    /* Partners Panel Sizing */
     .partners-panel {
-        height: 75.5vh;
-        /* Match phone */
-        max-height: none;
-        /* No caps */
-        width: 360px;
-        margin-left: 40px;
-        padding: 30px 15px;
-        border-radius: 66px;
-        /* Match phone radius */
+        height: 72vh;
+        max-height: 800px;
+        /* Width is half of phone's relative width */
+        /* Phone aspect ratio is 1:2.17, so width is ~height/2.17 */
+        /* Partners width = phone_width / 2 = (72vh / 2.17) / 2 ≈ 16.6vh */
+        width: calc(72vh / 2.17 / 2);
+        bottom: auto;
+        margin: 0;
+        transform: none;
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 35px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     }
 
+    /* Footer - Fixed Bottom Block */
     .main-footer {
-        height: 180px;
-        padding: 20px 0;
-    }
-
-    .footer-value {
-        font-size: 1.8rem;
-    }
-
-    .values-batch {
-        gap: 60px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        background: #000;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        z-index: 50;
     }
 
     .values-batch-container {
         width: 100%;
-        max-width: 1000px;
+        max-width: 1200px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .values-batch.active {
+        display: flex;
+        gap: 60px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .footer-value {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 0;
+        opacity: 1;
+    }
+
+    .footer-bottom-row {
+        margin-top: 0;
+        opacity: 0.5;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .footer-copyright {
+        font-size: 0.65rem;
+        letter-spacing: 1.5px;
+    }
+
+    /* Logo Position */
+    .header-logo {
+        position: fixed;
+        top: 60px;
+        left: 80px;
+        font-size: 42px;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* Hide original media queries that conflict */
+@media (min-width: 2560px) {
+    .iphone {
+        height: 65vh;
     }
 }
 
@@ -1448,13 +1481,29 @@ body {
     margin-bottom: 30px;
 }
 
-/* High-Visibility Golden Lines */
+/* High-Visibility Golden Lines with Pulse Animation */
 .footer-top-row::before,
 .footer-top-row::after {
     content: '';
     flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.9) 30%, rgba(255, 215, 0, 1) 50%, rgba(212, 175, 55, 0.9) 70%, transparent 100%);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.3);
+    animation: gold-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gold-pulse {
+
+    0%,
+    100% {
+        height: 2px;
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    50% {
+        height: 3px;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.9), 0 0 35px rgba(212, 175, 55, 0.5);
+    }
 }
 
 .values-batch-container {
@@ -1470,22 +1519,33 @@ body {
 .values-batch {
     position: absolute;
     display: none;
-    /* Hidden by default */
     justify-content: center;
     align-items: center;
     gap: 100px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(0);
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(15px);
 }
 
 .values-batch.active {
     display: flex;
-    /* Only visible when active */
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    animation: fade-in-up 0.8s ease-out;
+}
+
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .footer-value {
@@ -1497,12 +1557,25 @@ body {
     transition: all 0.4s ease;
     cursor: default;
     white-space: nowrap;
+    animation: subtle-glow 3s ease-in-out infinite;
+}
+
+@keyframes subtle-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 0 50px rgba(212, 175, 55, 0.2);
+    }
 }
 
 .footer-value:hover {
     color: #fff;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-    transform: scale(1.05);
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 60px rgba(212, 175, 55, 0.4);
+    transform: scale(1.08);
 }
 
 .footer-bottom-row {

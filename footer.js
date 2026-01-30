@@ -3,25 +3,9 @@
     footer.className = 'main-footer';
 
     const companyValues = [
-        'Private by Design',
-        'Anonymous by Default',
-        'Purpose-First',
         'Identity Optional',
         'Interest Graph',
-        'Context-Aware Search',
-        'Smart Matching',
-        'Warm Introductions',
-        'Signal, Not Noise',
-        'Always-On',
-        'Judgement-Free',
-        'Intent-Driven',
-        'Name-Free',
-        'Meaningful Signals',
-        'Search With Context',
-        'Intent Insights',
-        'Voice Signal Summaries',
-        'Audience Pulse'
-
+        'Context-Aware Search'
     ];
 
     const socialLinks = [
@@ -42,20 +26,12 @@
         }
     ];
 
-    // Split values into batches of 3
-    let batches = [];
-    for (let i = 0; i < companyValues.length; i += 3) {
-        batches.push(companyValues.slice(i, i + 3));
-    }
-
     footer.innerHTML = `
         <div class="footer-top-row">
             <div class="values-batch-container">
-                ${batches.map((batch, index) => `
-                    <div class="values-batch ${index === 0 ? 'active' : ''}" id="batch-${index}">
-                        ${batch.map(value => `<span class="footer-value">${value}</span>`).join('')}
-                    </div>
-                `).join('')}
+                <div class="values-batch active">
+                    ${companyValues.map(value => `<span class="footer-value">${value}</span>`).join('')}
+                </div>
             </div>
         </div>
         <div class="footer-bottom-row">
@@ -71,17 +47,6 @@
     `;
 
     document.body.appendChild(footer);
-
-    // Batch switching log
-    let currentBatch = 0;
-    setInterval(() => {
-        const currentBatchEl = document.getElementById(`batch-${currentBatch}`);
-        if (currentBatchEl) currentBatchEl.classList.remove('active');
-
-        currentBatch = (currentBatch + 1) % batches.length;
-
-        const nextBatchEl = document.getElementById(`batch-${currentBatch}`);
-        if (nextBatchEl) nextBatchEl.classList.add('active');
-    }, 4500); // Switch every 4.5 seconds
+    // Removed the interval batch switching as we only have one static set now.
 
 })();
